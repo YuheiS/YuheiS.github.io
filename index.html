@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>MUSICUM - 音楽情報サイト</title>
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <link rel="icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style_musicum.css">
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@600&family=Raleway+Dots&family=Roboto+Slab&family=Russo+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="overlay"></div>
+  <div class="overlay2"></div>
+  <div class="wrapper">
+    <header id="variable">
+      <h1><img src="images/logo01.png" alt="MUSICUM"></h1>
+
+      <div class="searchBox">
+        <input type="text" id="keywords" class="searchText">
+        <span id="search"><i class="fas fa-search"></i> 検索</span>
+      </div>
+
+      <div class="trigger-bg">
+        <div class="menu-trigger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <nav class="main-menu">
+        <ul>
+          <li class="searchType" id="goTop">トップ<p>Top</p></li>
+          <li class="searchType" id="goTrack">トラック<p>Track</p></li>
+          <li class="searchType" id="goAlbum">アルバム<p>Album</p></li>
+          <li class="searchType" id="goArtist">アーティスト<p>Artist</p></li>
+          <li class="searchType" id="goMusicVideo">ミュージックビデオ<p>MusicVideo</p></li>
+          <li class="searchType" id="goBookmark">ブックマーク<p>Bookmark</p></li>
+        </ul>
+      </nav>
+    </header>
+
+
+
+    <main>
+      <section id="topArea">
+        <div id="main-visual">
+          <div class="subTitle">
+            <h2><span class="subT1">NO MUSIC,</span> <span class="subT2">NO LIFE!</span></h2>
+            <h3 class="subT3">音楽を探そう！</h3>
+          </div>
+          <div id="mv-display">
+            <!-- 動画を表示 -->
+          </div>
+          <div class="mobile-logo">
+            <img src="images/logo01.png" alt="MUSICUM">
+          </div>
+
+        </div>
+
+        <div class="top-menuBG">
+          <nav class="top-menu">
+            <ul>
+              <li class="searchType" id="goTrack">
+                <span>トラック</span>
+                <i class="fas fa-music"></i>
+                <span>Track</span>
+              </li>
+              <li class="searchType" id="goAlbum">
+                <span>アルバム</span>
+                <i class="fas fa-compact-disc"></i>
+                <span>Album</span>
+              </li>
+              <li class="searchType" id="goArtist">
+                <span>アーティスト</span>
+                <i class="fas fa-users"></i>
+                <span>Artist</span>
+              </li>
+              <li class="searchType" id="goMusicVideo">
+                <span>ミュージックビデオ</span>
+                <i class="fas fa-film"></i>
+                <span>MusicVideo</span>
+              </li>
+              <li class="searchType" id="goBookmark">
+                <span>ブックマーク</span>
+                <i class="fas fa-star"></i>
+                <span>Bookmark</span>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+
+
+      <section class="resultArea" id="trackArea">
+        <div class="resultTrack">
+          <div id="page-btnTrack">
+            <!-- ボタンを表示 -->
+          </div>
+          <ul id="dataTrack">
+            <div class="trackicon">
+              <img src="images/icon_music128.png" alt="icon_track">
+              <h3>Track-Area</h3>
+            </div>
+            <!-- 検索結果を表示 -->
+          </ul>
+          <div id="page-btnTrack2">
+            <!-- ボタンを表示 -->
+          </div>
+        </div>
+      </section>
+
+
+      <section class="resultArea" id="albumArea">
+        <div class="resultAlbum">
+          <div id="page-btnAlbum">
+            <!-- ボタンを表示 -->
+          </div>
+          <ul id="dataAlbum">
+            <div class="albumicon">
+              <img src="images/icon_cd128.png" alt="icon_album">
+              <h3>Album-Area</h3>
+            </div>
+            <!-- 検索結果を表示 -->
+          </ul>
+          <div id="page-btnAlbum2">
+            <!-- ボタンを表示 -->
+          </div>
+        </div>
+      </section>
+
+
+      <section class="resultArea" id="artistArea">
+        <div class="resultArtist">
+          <div id="page-btnArtist">
+            <!-- ボタンを表示 -->
+          </div>
+          <ul id="dataArtist">
+            <div class="artisticon">
+              <img src="images/icon_people128.png" alt="icon_artist">
+              <h3>Artist-Area</h3>
+            </div>
+            <!-- 検索結果を表示 -->
+          </ul>
+          <div id="page-btnArtist2">
+            <!-- ボタンを表示 -->
+          </div>
+        </div>
+      </section>
+
+
+      <section class="resultArea" id="mvArea">
+        <div class="resultMV">
+          <div id="page-btnMV">
+            <!-- ボタンを表示 -->
+          </div>
+          <ul id="dataMV">
+            <div class="videoicon">
+              <img src="images/icon_video128.png" alt="video_track">
+              <h3>MusicVideo-Area</h3>
+            </div>
+            <!-- 検索結果を表示 -->
+          </ul>
+          <div id="page-btnMV2">
+            <!-- ボタンを表示 -->
+          </div>
+        </div>
+      </section>
+
+
+      <section class="resultArea" id="bookmarkArea">
+        <div class="resultAlbum">
+          <ul class="bookmarkhead">
+            <li id="trackT">トラック</li>
+            <li id="albumT">アルバム</li>
+            <li id="artistT">アーティスト</li>
+            <li id="videoT">ビデオ</li>
+          </ul>
+
+          <ul id="dataBookmark">
+            <!-- ブックマークを表示 -->
+          </ul>
+
+          <div class="bookmarkFoot">
+          </div>
+
+          <div class="clearAlert">
+            <p>ブックマークを全て削除します。</p>
+            <div class="select">
+              <span id="allDelete">OK</span>
+              <span id="cancel">キャンセル</span>
+            </div>
+          </div>
+
+          <div class="clear-btn">
+            <span id=clear><i class="fas fa-trash-alt"></i> 全て削除する</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 親要素にtransformが指定されているとfixedが上手く効かなくなるのでここに表示 -->
+      <div class="resultPlayer">
+        <!-- プレイヤーを表示 -->
+      </div>
+      <div class="resultVideoPlayer">
+        <!-- ビデオプレイヤーを表示 -->
+      </div>
+
+      <div class="resultPlayerBM">
+        <!-- ブックマーク用プレイヤーを表示 -->
+      </div>
+      <div class="resultVideoPlayerBM">
+        <!-- ブックマーク用ビデオプレイヤーを表示 -->
+      </div>
+    </main>
+
+
+
+    <footer>
+      <small class="copyright">&copy; 2019 MUSICUM</small>
+    </footer>
+  </div>
+
+<script>
+<!-- 読み込み時の動作 -->
+$(function(){
+  // 検索ボックスを非表示にする
+  $('.searchBox').hide();
+  // 削除確認を非表示にする
+  $('.clearAlert').fadeOut();
+  // topをアクティブにする
+  $('#goTop').addClass('active');
+
+  <!-- トップのビデオの再生 -->
+  $(function playVideo(){
+    $('#main-visual video').empty();
+    //メインビジュアルのビデオ検索のキーワード
+    var Vkeywords = [
+      //'equilibrium',
+      'disturbed',
+      //'eluveitie',
+      'in flames',
+      'omnium gatherum',
+      'sonic syndicate',
+      //'blind guardian',
+      'ill nino',
+      'static x',
+      'cannibal corpse',
+      'love bites',
+      'slipknot',
+      //'korpiklaani',
+      'nightwish',
+      //'sabaton',
+      'amaranthe',
+      'nile',
+      'kamelot',
+      'children of bodom',
+      'lacuna coil',
+      'dragonforce',
+      'amon amarth',
+      //'decapitated',
+      //'soilwork',
+      //'amorphis',
+      'killswitch engage',
+      'ensiferum',
+      //'sonata arctica',
+      'heaven shall burn',
+      'hammerfall'
+    ];
+
+    var Vnum =[
+      0,
+      1
+    ];
+
+    // ビデオのキーワードをランダム選択
+    var random = Math.floor( Math.random() * Vkeywords.length );
+    console.log(Vkeywords[random]);
+    // ビデオの番号をランダム選択
+    var random2 = Math.floor( Math.random() * Vnum.length );
+    console.log(Vnum[random2]);
+
+    var params = {
+      term: Vkeywords[random],
+      lang: 'ja_jp',
+      country: 'JP',
+      entry: 'music',
+      media: 'music',
+      entity: 'musicVideo',
+      //attribute: ' ',
+      offset: Vnum[random2],
+      limit: 1,
+    };
+
+    $.ajax({
+      url: 'https://itunes.apple.com/search',
+      method: 'GET',
+      data: params,
+      dataType: 'jsonp',
+
+      success:function(json){
+        console.log(json);
+        showDataTopVideo(json);
+      },
+      error:function(){
+        $(function(){
+          $("#mv-display").prepend('<div class="altV"><p class="error">＊ ERROR! ＊</p></div>');
+        });
+      },
+    });
+  });
+
+  <!-- サブタイトルのアニメーション -->
+  setTimeout(function(){
+    $('.subT1').css({transform: 'translateX(0%)', opacity: '1'});
+  },1000);
+
+  setTimeout(function(){
+    $('.subT2').css({transform: 'translateX(0%)', opacity: '1'});
+  },1500);
+
+  setTimeout(function(){
+    $('.subT3').css({transform: 'translateY(0%)', opacity: '1'});
+  },2000);
+});
+
+
+
+<!-- enterキーで検索イベント発生 -->
+$(".searchText").keypress(function(e){
+  if(e.which == 13){
+    $('#search').trigger('click');
+  }
+});
+
+
+
+<!-- 検索イベント -->
+var target; // 入力したキーワード
+var content;　// 検索対象
+var page; // ページ(件数)
+var animateStyle; //アニメーションの仕方
+
+$("#search").on("click",function(){
+  search();
+});
+
+function search(){
+  $(window).scrollTop(0);
+  target = $('#keywords').val();
+  console.log(target);
+
+  // アニメーション設定
+  animateStyle = null;
+
+  // idに合わせて変化
+  // 検索対象の決定・検索で表示した部分を空にする
+  if($('#goTrack').hasClass('active')){
+    content = 'musicTrack';
+    $('#dataTrack , #page-btnTrack , #page-btnTrack2').empty();
+  } else
+  if($('#goAlbum').hasClass('active')){
+    content = 'album';
+    $('#dataAlbum , #page-btnAlbum , #page-btnAlbum2').empty();
+  } else
+  if($('#goArtist').hasClass('active')){
+    content = 'musicArtist';
+    $('#dataArtist , #page-btnArtist , #page-btnArtist2').empty();
+  } else
+  if($('#goMusicVideo').hasClass('active')){
+    content = 'musicVideo';
+    $('#dataMV , #page-btnMV , #page-btnMV2').empty();
+  }
+
+  page = 0;
+  console.log(page);
+  //APIに送るパラメータ
+  var params = {
+    term: target,
+    lang: 'ja_jp',
+    country: 'JP',
+    entry: 'music',
+    media: 'music',
+    entity: content,
+    //attribute: ' ',
+    offset: page, // 上からpage番目の物を表示
+    limit: 20,
+  };
+
+  $.ajax({
+    url: 'https://itunes.apple.com/search',
+    method: 'GET',
+    data: params,
+    dataType: 'jsonp',
+
+    success:function(json){
+      console.log(json);
+      // contentの中身に応じて分岐
+      switch (content) {
+        case "musicTrack":
+        showDataTrack(json);
+        break;
+        case "album":
+        showDataAlbum(json);
+        break;
+        case "musicArtist":
+        showDataArtist(json);
+        break;
+        case "musicVideo":
+        showDataMusicVideo(json);
+        break;
+      }
+    },
+    error:function(){
+      $(function(){
+        // チェックボックスに合わせて変化
+        if($('#goTrack').hasClass('active')){
+          $("#dataTrack").append('<p class="error">＊ ERROR! ＊</p>');
+        } else
+        if($('#goAlbum').hasClass('active')){
+          $("#dataAlbum").append('<p class="error">＊ ERROR! ＊</p>');
+        } else
+        if($('#goArtist').hasClass('active')){
+          $("#dataArtist").append('<p class="error">＊ ERROR! ＊</p>');
+        } else
+        if($('#goMusicVideo').hasClass('active')){
+          $("#dataMV").append('<p class="error">＊ ERROR! ＊</p>');
+        }
+      });
+    },
+  });
+}
+
+
+
+<!-- トップのビデオを検索 -->
+function showDataTopVideo(json){
+  // データ取得後にhtmlを追加
+  if (json.results.length != 0) {
+    var html = "";
+    for (var i = 0, len = json.results.length; i < len; i++) {
+      var result = json.results[i];
+      //console.log(json.results);
+      html += '<video muted src="'+ result.previewUrl + '" autoplay loop></video>';
+    }
+  }
+  $('#mv-display').prepend(html);
+}
+
+
+
+<!-- トラックを検索 -->
+function showDataTrack(json) {
+  if (json.results.length != 0) {
+    // ヒット数
+    var hitnum = json.results.length;
+    // 件数表示時の代入用
+    var pagecnt = page;
+    // htmlを格納する変数
+    var head = "";
+    var body = "";
+    var foot = "";
+    var player = "";
+
+    //  ヘッダー部
+    if(animateStyle == null){
+      head += '<li class="resultHead headF">\n';
+    } else
+    if(animateStyle == "nextP"){
+      head += '<li class="resultHead headN">\n';
+    } else
+    if(animateStyle == "prevP"){
+      head += '<li class="resultHead headP">\n';
+    }
+      head += '- <span>' + target + '</span> の検索結果 -';
+      head += '<p>' + (pagecnt += 1) + '件 - ' + (pagecnt += hitnum -= 1 ) +'件</p>';
+    head += '</li>';
+
+    $('#dataTrack').append(head);
+
+    // フッター部
+    if(animateStyle == null){
+      foot += '<li class="resultFoot footF"></li>';
+    } else
+    if(animateStyle == "nextP"){
+      foot += '<li class="resultFoot footN"></li>';
+    } else
+    if(animateStyle == "prevP"){
+      foot += '<li class="resultFoot footP"></li>';
+    }
+
+    // 返ってきたjsonの数だけ繰り返し
+    for (var i = 0, len = json.results.length; i < len; i++) {
+      var result = json.results[i];
+      //console.log(json.results);
+      //console.log(json.results.length);
+
+      // ボディ部
+      if(animateStyle == null){
+        body += '<li class="trackBody bodyF">';
+      } else
+      if(animateStyle == "nextP"){
+        body += '<li class="trackBody bodyN">';
+      } else
+      if(animateStyle == "prevP"){
+        body += '<li class="trackBody bodyP">';
+      }
+
+        body += '<div><img src="' + result.artworkUrl100 + '" ><p class="genre">'+ result.primaryGenreName + '</p></div>';
+        body += '<div><span class="num">No.' + result.trackNumber + '</span> <a href="' + result.trackViewUrl + '" target="_blank">'+ result.trackName + ' <i class="fas fa-external-link-alt"></i></a><p class="id">ID: '+ result.trackId + '</p></div>';
+        body += '<div><a href="' + result.collectionViewUrl + '" target="_blank">'+ result.collectionName + ' <i class="fas fa-external-link-alt"></i></a><p class="id">ID: '+ result.collectionId + '</p></div>';
+        body += '<div><a href="' + result.artistViewUrl + '" target="_blank">'+ result.artistName + ' <i class="fas fa-external-link-alt"></i></a><p class="id">ID: '+ result.artistId + '</p></div>';
+        body += '<div><p class="time">'+ result.trackTimeMillis + ' ミリ秒</p></div>';
+        body += '<div><p class="price">'+ result.trackPrice + ' 円</p></div>';
+        body += '<div><p class="release">'+ result.releaseDate + ' 配信開始</p></div>';
+        body += '<div><i class="far fa-play-circle playMusic" id="' + result.trackId + '"></i></div>';
+        body += '<div><i class="far fa-star registBM trackBM" id="' + result.trackId + '"></i></div>';
+        body += '</li>';
+
+        player += '<ul class="player ' + result.trackId + ' ">';
+        player += '<li><img src="' + result.artworkUrl60 + '" class=""></li>';
+        player += '<li>'+ result.trackName + '</li>';
+        player += '<li>'+ result.artistName + '</li>';
+        player += '<li><audio src="' + result.previewUrl + '" controls class="' + result.trackId + '"></audio></li>';
+        player += '</ul>';
+    }
+  }else
+  {
+    $('#dataTrack').append('<p class="error">* 一致するトラックは存在しません *</p>');
+  }
+
+  // 返ってきたjsonの数が20以上の時表示
+  if(json.results.length >= 20){
+    $('#page-btnTrack').append('<div id="next">next <i class="fas fa-chevron-circle-right"></i></div>');
+    $('#page-btnTrack2').append('<div id="next2">next <i class="fas fa-chevron-circle-right"></i></div>');
+    setTimeout(function(){
+      $('#page-btnTrack > #next').css({transform: 'translateX(0px)', opacity: '1'});
+      $('#page-btnTrack2 >#next2').css({transform: 'translateX(0px)', opacity: '1'});
+    }, 400);
+  }
+
+  // ページ(件数)のカウントが20以上の時表示
+  if (page >= 20){
+    $('#page-btnTrack').append('<div id="prev"><i class="fas fa-chevron-circle-left"></i> prev</div>');
+    $('#page-btnTrack2').append('<div id="prev2"><i class="fas fa-chevron-circle-left"></i> prev</div>');
+    setTimeout(function(){
+      $('#page-btnTrack > #prev').css({transform: 'translateX(0px)', opacity: '1'});
+      $('#page-btnTrack2 > #prev2').css({transform: 'translateX(0px)', opacity: '1'});
+    }, 400);
+  }
+
+  console.log(page);
+  console.log(animateStyle);
+  $('#dataTrack').append(body);
+  $('.resultPlayer').append(player);
+  $('#dataTrack').append(foot);
+
+  // プレイヤーを非表示
+  $('.player').hide();
+
+  // htmlを表示
+  setTimeout(function(){
+    if(animateStyle == null){
+      $('#dataTrack > .resultHead').css({transform: 'translateY(0px)', opacity: '1', transition: 'all 1s'});
+      // ボディ部を上から順番に表示
+      $('#dataTrack > .bodyF').each(function(i){
+        $(this).delay(100*i).queue(function() {
+          $(this).css({transform: 'translateY(0px)', opacity: '1'}).dequeue();
+        });
+      });
+      // ボディ部を全て表示後にフッター部表示
+      $('#dataTrack > .bodyF').delay(100*i+200).queue(function() {
+        $('#dataTrack > .resultFoot').css({transform: 'translateY(0px)', opacity: '1'}).dequeue();
+      });
+    } else
+    if(animateStyle != null) {
+      $('#dataTrack > .resultHead').css({transform: 'translateX(0px)', opacity: '1', transition: 'all 1s'});
+      // ボディ部を横から順番に表示
+      $('#dataTrack > .bodyN , #dataTrack > .bodyP').each(function(i){
+        $(this).delay(100*i).queue(function() {
+          $(this).css({transform: 'translateX(0px)', opacity: '1'}).dequeue();
+        });
+      });
+      // ボディ部を全て表示後にフッター部表示
+      $('#dataTrack > .bodyN , #dataTrack > .bodyP').delay(100*i+200).queue(function() {
+        $('#dataTrack > .resultFoot').css({transform: 'translateX(0px)', opacity: '1'}).dequeue();
+      });
+    }
+  }, 400);
+}
+
+
+
+<!-- アルバムを検索 -->
+function showDataAlbum(json) {
+  if (json.results.length != 0) {
+    // ヒット数
+    var hitnum = json.results.length;
+    // 件数表示時の代入用
+    var pagecnt = page;
+    // htmlを格納する変数
+    var head = "";
+    var body = "";
+    var foot = "";
+    var player = "";
+
+    //  ヘッダー部
+    if(animateStyle == null){
+      head += '<li class="resultHead headF">\n';
+    } else
+    if(animateStyle == "nextP"){
+      head += '<li class="resultHead headN">\n';
+    } else
+    if(animateStyle == "prevP"){
+      head += '<li class="resultHead headP">\n';
+    }
+      head += '- <span>' + target + '</span> の検索結果 -';
+      head += '<p>' + (pagecnt += 1) + '件 - ' + (pagecnt += hitnum -= 1) +'件</p>';
+    head += '</li>';
+
+    $('#dataAlbum').append(head);
+
+    // フッター部
+    if(animateStyle == null){
+      foot += '<li class="resultFoot footF"></li>';
+    } else
+    if(animateStyle == "nextP"){
+      foot += '<li class="resultFoot footN"></li>';
+    } else
+    if(animateStyle == "prevP"){
+      foot += '<li class="resultFoot footP"></li>';
+    }
+
+    // 返ってきたjsonの数だけ繰り返し
+    for (var i = 0, len = json.results.length; i < len; i++) {
+      var result = json.results[i];
+      //console.log(json.results);
+      //console.log(json.results.length);
+
+      // ボディ部
+      if(animateStyle == null){
+        body += '<li class="albumBody bodyF">';
+      } else
+      if(animateStyle == "nextP"){
+        body += '<li class="albumBody bodyN">';
+      } else
+      if(animateStyle == "prevP"){
+        body += '<li class="albumBody bodyP">';
+      }
+
+        body += '<div><img src="' + result.artworkUrl100 + '" ><p class="genre">'+ result.primaryGenreName + '</p></div>';
+        body += '<div><a href="' + result.collectionViewUrl + '" target="_blank">'+ result.collectionName + ' <i class="fas fa-external-link-alt"></i></a><p class="id">ID: '+ result.collectionId + '</p></div>';
+        body += '<div><a href="' + result.artistViewUrl + '" target="_blank">'+ result.artistName + ' <i class="fas fa-external-link-alt"></i></a><p class="id">ID: '+ result.artistId + '</p></div>';
+        body += '<div><p class="crAlbum">'+ result.copyright + '</p></div>';
+        body += '<div><p class="count">'+ result.trackCount + ' 曲収録</p></div>';
+        body += '<div><p class="price">'+ result.collectionPrice + ' 円</p></div>';
+        body += '<div><p class="release">'+ result.releaseDate + ' 配信開始</p></div>';
+        body += '<div><i class="far fa-star registBM albumBM" id="' + result.collectionId + '"></i></div>';
+        body += '</li>';
+    }
+  }else
+  {
+    $('#dataAlbum').append('<p class="error">* 一致するアルバムは存在しません *</p>');
+  }
+
+  // 返ってきたjsonの数が20以上の時表示
+  if(json.results.length >= 20){
+    $('#page-btnAlbum').append('<div id="next">next <i class="fas fa-chevron-circle-right"></i></div>');
+    $('#page-btnAlbum2').append('<div id="next2">next <i class="fas fa-chevron-circle-right"></i></div>');
+    setTimeout(function(){
+      $('#page-btnAlbum > #next').css({transform: 'translateX(0px)', opacity: '1'});
+      $('#page-btnAlbum2 > #next2').css({transform: 'translateX(0px)', opacity: '1'});
+    }, 400);
+  }
+
+  // ページ(件数)のカウントが20以上の時表示
+  if (page >= 20){
+    $('#page-btnAlbum').append('<div id="prev"><i class="fas fa-chevron-circle-left"></i> prev</div>');
+    $('#page-btnAlbum2').append('<div id="prev2"><i class="fas fa-chevron-circle-left"></i> prev</div>');
+    setTimeout(function(){
+      $('#page-btnAlbum > #prev').css({transform: 'translateX(0px)', opacity: '1'});
+      $('#page-btnAlbum2 > #prev2').css({transform: 'translateX(0px)', opacity: '1'});
+    }, 400);
+  }
+
+  console.log(page);
+  console.log(animateStyle);
+  $('#dataAlbum').append(body);
+  $('#dataAlbum').append(foot);
+
+
+  // htmlを表示
+  setTimeout(function(){
+    if(animateStyle == null){
+      $('#dataAlbum > .resultHead').css({transform: 'translateY(0px)', opacity: '1', transition: 'all 1s'});
+      // ボディ部を上から順番に表示
+      $('#dataAlbum > .bodyF').each(function(i){
+        $(this).delay(100*i).queue(function() {
+          $(this).css({transform: 'translateY(0px)', opacity: '1'}).dequeue();
+        });
+      });
+      // ボディ部を全て表示後にフッター部表示
+      $('#dataAlbum > .bodyF').delay(100*i+200).queue(function() {
+        $('#dataAlbum > .resultFoot').css({transform: 'translateY(0px)', opacity: '1'}).dequeue();
+      });
+    } else
+    if(animateStyle != null) {
+      $('#dataAlbum > .resultHead').css({transform: 'translateX(0px)', opacity: '1', transition: 'all 1s'});
+      // ボディ部を横から順番に表示
+      $('#dataAlbum > .bodyN , #dataAlbum > .bodyP').each(function(i){
+        $(this).delay(100*i).queue(function() {
+          $(this).css({transform: 'translateX(0px)', opacity: '1'}).dequeue();
+        });
+      });
+      // ボディ部を全て表示後にフッター部表示
+      $('#dataAlbum > .bodyN , #dataAlbum > .bodyP').delay(100*i+200).queue(function() {
+        $('#dataAlbum > .resultFoot').css({transform: 'translateX(0px)', opacity: '1'}).dequeue();
+      });
+    }
+  }, 400);
+}
+
+
+
+<!-- アーティストを検索 -->
+function showDataArtist(json) {
+  if (json.results.length != 0) {
+    // ヒット数
+    var hitnum = json.results.length;
+    // 件数表示時の代入用
+    var pagecnt = page;
+    // htmlを格納する変数
+    var head = "";
+    var body = "";
+    var foot = "";
+    var player = "";
+
+    //  ヘッダー部
+    if(animateStyle == null){
+      head += '<li class="resultHead headF">\n';
+    } else
+    if(animateStyle == "nextP"){
+      head += '<li class="resultHead headN">\n';
+    } else
+    if(animateStyle == "prevP"){
+      head += '<li class="resultHead headP">\n';
+    }
+      head += '- <span>' + target + '</span> の検索結果 -';
+      head += '<p>' + (pagecnt += 1) + '件 - ' + (pagecnt += hitnum -=1) +'件</p>';
+    head += '</li>';
+
+    $('#dataArtist').append(head);
+
+    // フッター部
+    if(animateStyle == null){
+      foot += '<li class="resultFoot footF"></li>';
+    } else
+    if(animateStyle == "nextP"){
+      foot += '<li class="resultFoot footN"></li>';
+    } else
+    if(animateStyle == "prevP"){
+      foot += '<li class="resultFoot footP"></li>';
+    }
+
+    // 返ってきたjsonの数だけ繰り返し
+    for (var i = 0, len = json.results.length; i < len; i++) {
+      var result = json.results[i];
+      //console.log(json.results);
+      //console.log(json.results.length);
+
+      // ボディ部
+      if(animateStyle == null){
+        body += '<li class="artistBody bodyF">';
+      } else
+      if(animateStyle == "nextP"){
+        body += '<li class="artistBody bodyN">';
+      } else
+      if(animateStyle == "prevP"){
+        body += '<li class="artistBody bodyP">';
+      }
+
+        body += '<div><a href="' + result.artistLinkUrl + '" target="_blank">'+ result.artistName + ' <i class="fas fa-external-link-alt"></i></a></div>';
+        body += '<div><p class="id">ID: '+ result.artistId + '</p></div>';
+        body += '<div><p>主なジャンル: <span class="genre">'+ result.primaryGenreName + '</span></p></div>';
+        body += '<div><i class="far fa-star registBM artistBM" id="' + result.artistId + '"></i></div>';
+        body += '</li>';
+    }
+  }else
+  {
+    $('#dataArtist').append('<p class="error">* 一致するアーティストは存在しません *</p>');
+  }
+
+  // 返ってきたjsonの数が20以上の時表示
+  if(json.results.length >= 20){
+    $('#page-btnArtist').append('<div id="next">next <i class="fas fa-chevron-circle-right"></i></div>');
+    $('#page-btnArtist2').append('<div id="next2">next <i class="fas fa-chevron-circle-right"></i></div>');
+    setTimeout(function(){
+      $('#page-btnArtist > #next').css({transform: 'translateX(0px)', opacity: '1'});
+      $('#page-btnArtist2 > #next2').css({transform: 'translateX(0px)', opacity: '1'});
+    }, 400);
+  }
+
+  // ページ(件数)のカウントが20以上の時表示
+  if (page >= 20){
+    $('#page-btnArtist').append('<div id="prev"><i class="fas fa-chevron-circle-left"></i> prev</div>');
+    $('#page-btnArtist2').append('<div id="prev2"><i class="fas fa-chevron-circle-left"></i> prev</div>');
+    setTimeout(function(){
+      $('#page-btnArtist > #prev').css({transform: 'translateX(0px)', opacity: '1'});
+      $('#page-btnArtist2 > #prev2').css({transform: 'translateX(0px)', opacity: '1'});
+    }, 400);
+  }
+
+  console.log(page);
+  console.log(animateStyle);
+  $('#dataArtist').append(body);
+  $('#dataArtist').append(foot);
+
+
+  // htmlを表示
+  setTimeout(function(){
+    if(animateStyle == null){
+      $('#dataArtist > .resultHead').css({transform: 'translateY(0px)', opacity: '1', transition: 'all 1s'});
+      // ボディ部を上から順番に表示
+      $('#dataArtist > .bodyF').each(function(i){
+        $(this).delay(100*i).queue(function() {
+          $(this).css({transform: 'translateY(0px)', opacity: '1'}).dequeue();
+        });
+      });
+      // ボディ部を全て表示後にフッター部表示
+      $('#dataArtist > .bodyF').delay(100*i+200).queue(function() {
+        $('#dataArtist > .resultFoot').css({transform: 'translateY(0px)', opacity: '1'}).dequeue();
+      });
+    } else
+    if(animateStyle != null) {
+      $('#dataArtist > .resultHead').css({transform: 'translateX(0px)', opacity: '1', transition: 'all 1s'});
+      // ボディ部を横から順番に表示
+      $('#dataArtist > .bodyN , #dataArtist > .bodyP').each(function(i){
+        $(this).delay(100*i).queue(function() {
+          $(this).css({transform: 'translateX(0px)', opacity: '1'}).dequeue();
+        });
+      });
+      // ボディ部を全て表示後にフッター部表示
+      $('#dataArtist > .bodyN , #dataArtist > .bodyP').delay(100*i+200).queue(function() {
+        $('#dataArtist > .resultFoot').css({transform: 'translateX(0px)', opacity: '1'}).dequeue();
+      });
+    }
+  }, 400);
+}
+
+
+
+<!-- ミュージックビデオを検索 -->
+function showDataMusicVideo(json) {
+  if (json.results.length != 0) {
+    // ヒット数
+    var hitnum = json.results.length;
+    // 件数表示時の代入用
+    var pagecnt = page;
+    // htmlを格納する変数
+    var head = "";
+    var body = "";
+    var foot = "";
+    var player = "";
+
+    //  ヘッダー部
+    if(animateStyle == null){
+      head += '<li class="resultHead headF">\n';
+    } else
+    if(animateStyle == "nextP"){
+      head += '<li class="resultHead headN">\n';
+    } else
+    if(animateStyle == "prevP"){
+      head += '<li class="resultHead headP">\n';
+    }
+      head += '- <span>' + target + '</span> の検索結果 -';
+      head += '<p>' + (pagecnt += 1) + '件 - ' + (pagecnt += hitnum -=1) +'件</p>';
+    head += '</li>';
+
+    $('#dataMV').append(head);
+
+    // フッター部
+    if(animateStyle == null){
+      foot += '<li class="resultFoot footF"></li>';
+    } else
+    if(animateStyle == "nextP"){
+      foot += '<li class="resultFoot footN"></li>';
+    } else
+    if(animateStyle == "prevP"){
+      foot += '<li class="resultFoot footP"></li>';
+    }
+
+    // 返ってきたjsonの数だけ繰り返し
+    for (var i = 0, len = json.results.length; i < len; i++) {
+      var result = json.results[i];
+      //console.log(json.results);
+      //console.log(json.results.length);
+
+      // ボディ部
+      if(animateStyle == null){
+        body += '<li class="videoBody bodyF">';
+      } else
+      if(animateStyle == "nextP"){
+        body += '<li class="videoBody bodyN">';
+      } else
+      if(animateStyle == "prevP"){
+        body += '<li class="videoBody bodyP">';
+      }
+
+        body += '<div><img src="' + result.artworkUrl100 + '" ><p class="genre">'+ result.primaryGenreName + '</p></div>';
+        body += '<div><a href="' + result.trackViewUrl + '" target="_blank">'+ result.trackName + ' <i class="fas fa-external-link-alt"></i></a><p class="id">ID: '+ result.trackId + '</p></div>';
+        body += '<div><a href="' + result.artistViewUrl + '" target="_blank">'+ result.artistName + ' <i class="fas fa-external-link-alt"></i></a><p class="id">ID: '+ result.artistId + '</p></div>';
+        body += '<div><p class="time">'+ result.trackTimeMillis + ' ミリ秒</p></div>';
+        body += '<div><p class="price">'+ result.trackPrice + ' 円</p></div>';
+        body += '<div><p class="release">'+ result.releaseDate + ' 配信開始</p></div>';
+        body += '<div><i class="far fa-play-circle playVideo" id="' + result.trackId + '"></i></div>';
+        body += '<div><i class="far fa-star registBM videoBM" id="' + result.trackId + '"></i></div>';
+        body += '</li>';
+
+        player += '<div class="videoPlayer ' + result.trackId + ' ">';
+          player += '<ul><li>'+ result.trackName + '</li><li>'+ result.artistName + '</li></ul>';
+          player += '<div><video src="' + result.previewUrl + '" controls class="' + result.trackId + '"></video></div>';
+        player += '</div>';
+    }
+  }else
+  {
+    $('#dataMV').append('<p class="error">* 一致するミュージックビデオは存在しません *</p>');
+  }
+
+  // 返ってきたjsonの数が20以上の時表示
+  if(json.results.length >= 20){
+    $('#page-btnMV').append('<div id="next">next <i class="fas fa-chevron-circle-right"></i></div>');
+    $('#page-btnMV2').append('<div id="next2">next <i class="fas fa-chevron-circle-right"></i></div>');
+    setTimeout(function(){
+      $('#page-btnMV > #next').css({transform: 'translateX(0px)', opacity: '1'});
+      $('#page-btnMV2 > #next2').css({transform: 'translateX(0px)', opacity: '1'});
+    }, 400);
+  }
+
+  // ページ(件数)のカウントが20以上の時表示
+  if (page >= 20){
+    $('#page-btnMV').append('<div id="prev"><i class="fas fa-chevron-circle-left"></i> prev</div>');
+    $('#page-btnMV2').append('<div id="prev2"><i class="fas fa-chevron-circle-left"></i> prev</div>');
+    setTimeout(function(){
+      $('#page-btnMV > #prev').css({transform: 'translateX(0px)', opacity: '1'});
+      $('#page-btnMV > #prev2').css({transform: 'translateX(0px)', opacity: '1'});
+    }, 400);
+  }
+
+  console.log(page);
+  console.log(animateStyle);
+  $('#dataMV').append(body);
+  $('.resultVideoPlayer').append(player);
+  $('#dataMV').append(foot);
+
+  // プレイヤーを非表示
+  $('.videoPlayer').hide();
+
+  // htmlを表示
+  setTimeout(function(){
+    if(animateStyle == null){
+      $('#dataMV > .resultHead').css({transform: 'translateY(0px)', opacity: '1', transition: 'all 1s'});
+      // ボディ部を上から順番に表示
+      $('#dataMV > .bodyF').each(function(i){
+        $(this).delay(100*i).queue(function() {
+          $(this).css({transform: 'translateY(0px)', opacity: '1'}).dequeue();
+        });
+      });
+      // ボディ部を全て表示後にフッター部表示
+      $('#dataMV > .bodyF').delay(100*i+200).queue(function() {
+        $('#dataMV > .resultFoot').css({transform: 'translateY(0px)', opacity: '1'}).dequeue();
+      });
+    } else
+    if(animateStyle != null) {
+      $('#dataMV > .resultHead').css({transform: 'translateX(0px)', opacity: '1', transition: 'all 1s'});
+      // ボディ部を横から順番に表示
+      $('#dataMV > .bodyN , #dataMV > .bodyP').each(function(i){
+        $(this).delay(100*i).queue(function() {
+          $(this).css({transform: 'translateX(0px)', opacity: '1'}).dequeue();
+        });
+      });
+      // ボディ部を全て表示後にフッター部表示
+      $('#dataMV > .bodyN , #dataMV > .bodyP').delay(100*i+200).queue(function() {
+        $('#dataMV > .resultFoot').css({transform: 'translateX(0px)', opacity: '1'}).dequeue();
+      });
+    }
+  }, 400);
+}
+
+
+
+
+
+// 次のページ
+$(document).on("click", "#next , #next2",function nextPage() {
+  // 位置を上に戻す
+  $(window).scrollTop(0);
+  // 次ページ用のアニメーション設定
+  animateStyle = "nextP";
+
+  // idに合わせて変化
+  // 検索対象の決定・検索で表示した部分を空にする
+  if($('#goTrack').hasClass('active')){
+    content = 'musicTrack';
+    $('#dataTrack , #page-btnTrack , #page-btnTrack2').empty();
+  } else
+  if($('#goAlbum').hasClass('active')){
+    content = 'album';
+    $('#dataAlbum , #page-btnAlbum , #page-btnAlbum2').empty();
+  } else
+  if($('#goArtist').hasClass('active')){
+    content = 'musicArtist';
+    $('#dataArtist , #page-btnArtist , #page-btnArtist2').empty();
+  } else
+  if($('#goMusicVideo').hasClass('active')){
+    content = 'musicVideo';
+    $('#dataMV , #page-btnMV , #page-btnMV2').empty();
+  }
+
+  // 20件次
+  page += 20;
+  //APIに送るパラメータ
+  var params = {
+    term: target,
+    lang: 'ja_jp',
+    country: 'JP',
+    entry: 'music',
+    media: 'music',
+    entity: content,
+    //attribute: '',
+    offset: page,
+    limit: 20,
+  };
+
+  $.ajax({
+    url: 'https://itunes.apple.com/search',
+    method: 'GET',
+    data: params,
+    dataType: 'jsonp',
+
+    success:function(json){
+      console.log(json);
+      switch (content) {
+        case "musicTrack":
+        showDataTrack(json);
+        break;
+        case "album":
+        showDataAlbum(json);
+        break;
+        case "musicArtist":
+        showDataArtist(json);
+        break;
+        case "musicVideo":
+        showDataMusicVideo(json);
+        break;
+      }
+    },
+    error:function(){
+      $(function(){
+        // チェックボックスに合わせて変化
+        if($('#goTrack').hasClass('active')){
+          $("#dataTrack").append('<p class="error">＊ ERROR! ＊</p>');
+        } else
+        if($('#goAlbum').hasClass('active')){
+          $("#dataAlbum").append('<p class="error">＊ ERROR! ＊</p>');
+        } else
+        if($('#goArtist').hasClass('active')){
+          $("#dataArtist").append('<p class="error">＊ ERROR! ＊</p>');
+        } else
+        if($('#goMusicVideo').hasClass('active')){
+          $("#dataMV").append('<p class="error">＊ ERROR! ＊</p>');
+        }
+      });
+    },
+  });
+});
+
+
+
+//v前のページ
+$(document).on("click", "#prev , #prev2", function prevPage() {
+  // 位置を上に戻す
+  $(window).scrollTop(0);
+  // 前ページ用のアニメーション設定
+  animateStyle = "prevP";
+
+  // idに合わせて変化
+  // 検索対象の決定・検索で表示した部分を空にする
+  if($('#goTrack').hasClass('active')){
+    content = 'musicTrack';
+    $('#dataTrack , #page-btnTrack , #page-btnTrack2').empty();
+  } else
+  if($('#goAlbum').hasClass('active')){
+    content = 'album';
+    $('#dataAlbum , #page-btnAlbum , #page-btnAlbum2').empty();
+  } else
+  if($('#goArtist').hasClass('active')){
+    content = 'musicArtist';
+    $('#dataArtist , #page-btnArtist , #page-btnArtist2').empty();
+  } else
+  if($('#goMusicVideo').hasClass('active')){
+    content = 'musicVideo';
+    $('#dataMV , #page-btnMV , #page-btnMV2').empty();
+  }
+
+  // 20件前
+  page -= 20;
+  //APIに送るパラメータ
+  var params = {
+    term: target,
+    lang: 'ja_jp',
+    country: 'JP',
+    entry: 'music',
+    media: 'music',
+    entity: content,
+    //attribute: '',
+    offset: page,
+    limit: 20,
+  };
+
+  $.ajax({
+    url: 'https://itunes.apple.com/search',
+    method: 'GET',
+    data: params,
+    dataType: 'jsonp',
+
+    success:function(json){
+      console.log(json);
+      switch (content) {
+        case "musicTrack":
+        showDataTrack(json);
+        break;
+        case "album":
+        showDataAlbum(json);
+        break;
+        case "musicArtist":
+        showDataArtist(json);
+        break;
+        case "musicVideo":
+        showDataMusicVideo(json);
+        break;
+      }
+    },
+    error:function(){
+      $(function(){
+        // チェックボックスに合わせて変化
+        if($('#goTrack').hasClass('active')){
+          $("#dataTrack").append('<p class="error">＊ ERROR! ＊</p>');
+        } else
+        if($('#goAlbum').hasClass('active')){
+          $("#dataAlbum").append('<p class="error">＊ ERROR! ＊</p>');
+        } else
+        if($('#goArtist').hasClass('active')){
+          $("#dataArtist").append('<p class="error">＊ ERROR! ＊</p>');
+        } else
+        if($('#goMusicVideo').hasClass('active')){
+          $("#dataMV").append('<p class="error">＊ ERROR! ＊</p>');
+        }
+      });
+    },
+  });
+});
+
+
+
+<!-- トラックの再生 -->
+$(document).on("click",'.playMusic', function(){
+  // クリックした再生ボタンのidを取得
+  var id1 = $(this).attr('id');
+  console.log(id1);
+
+  // 全ての停止ボタンを再生ボタンに変更
+  $(".stopMusic").removeClass('fa-stop-circle');
+  $(".stopMusic").addClass('playMusic');
+  $(".stopMusic").addClass('fa-play-circle');
+  $(".stopMusic").removeClass('stopMusic');
+
+  // audioを全て停止し先頭まで戻す
+  $('audio').each(function(){
+    this.pause();
+    this.currentTime = 0;
+  });
+
+  // 表示中の全てのプレイヤーを隠す
+  $('.player').hide();
+  // id1とidが異なるプレイヤーを表示前の位置に戻す
+  $(".player").not('.'+ id1 +'').animate({bottom: -50}, 100, 'swing');
+
+  // id1とidが同じプレイヤーを表示し再生
+  $(".player" + "."+ id1 +"").show();
+  $(".player" + "."+ id1 +"").animate({bottom: 30}, 100, 'swing');
+  setTimeout(function(){
+    $("audio" + "."+ id1 +"").get(0).play();
+  }, 300);
+
+  // クリックした再生を停止に変更
+  $(this).removeClass('playMusic');
+  $(this).removeClass('fa-play-circle');
+  $(this).addClass('stopMusic');
+  $(this).addClass('fa-stop-circle');
+});
+
+<!-- トラックの停止 -->
+$(document).on("click",'.stopMusic', function(){
+  // クリックした停止ボタンのidを取得
+  var id1 = $(this).attr('id');
+
+  // audioを全て停止し先頭まで戻す
+  $('audio').each(function(){
+    this.pause();
+    this.currentTime = 0;
+  });
+  // 表示後すぐに非表示にした時の対策
+  setTimeout(function(){
+    $('audio').each(function(){
+      this.pause();
+      this.currentTime = 0;
+    });
+  }, 290);
+
+  // id1とidが同じプレイヤーを非表示
+  $(".player" + "."+ id1 +"").animate({bottom: -50}, 100, 'swing');
+  setTimeout(function(){
+    $(".player" + "."+ id1 +"").hide();
+  }, 100);
+
+  // クリックした停止を再生に変更
+  $(this).removeClass('stopMusic');
+  $(this).removeClass('fa-stop-circle');
+  $(this).addClass('playMusic');
+  $(this).addClass('fa-play-circle');
+});
+
+
+
+<!-- ビデオの再生 -->
+$(document).on("click",'.playVideo', function(){
+  // クリックした再生ボタンのidを取得
+  var id1 = $(this).attr('id');
+  console.log(id1);
+
+  // audio, videoを全て停止し先頭まで戻す
+  $('audio').each(function(){
+    this.pause();
+    this.currentTime = 0;
+  });
+  $('video').each(function(){
+    this.pause();
+    this.currentTime = 0;
+  });
+
+  // 表示中の全てのプレイヤーを隠す
+  $('.player').hide();
+  $('.videoPlayer').hide();
+  // id1とidが異なるプレイヤーを表示前の位置に戻す
+  $(".videoPlayer").not('.'+ id1 +'').animate({top: '50%'}, 100, 'swing');
+
+  // 背景を黒くする
+  $('.overlay2').addClass('open');
+
+  // id1とidが同じプレイヤーを表示し再生
+  $(".videoPlayer" + "."+ id1 +"").show();
+  $(".videoPlayer" + "."+ id1 +"").animate({top: '3%'}, 100, 'swing');
+  setTimeout(function(){
+    $("video" + "."+ id1 +"").get(0).play();
+  }, 300);
+
+  // クリックした再生を停止に変更
+  $(this).val('再生中');
+  $('overlay2').addClass('stopVideo');
+});
+
+<!-- ビデオの停止 -->
+$(document).on("click",'.overlay2', function(){
+  // クリックした停止ボタンのidを取得
+  var id1 = $(this).attr('id');
+
+  // videoを全て停止し先頭まで戻す
+  $('video').each(function(){
+    this.pause();
+    this.currentTime = 0;
+  });
+  // 表示後すぐに非表示にした時の対策
+  setTimeout(function(){
+    $('video').each(function(){
+      this.pause();
+      this.currentTime = 0;
+    });
+  }, 290);
+
+  // プレイヤーを非表示
+  $(".videoPlayer").animate({top: '50%'}, 100, 'swing');
+  setTimeout(function(){
+    $(".videoPlayer").hide();
+  }, 100);
+
+  // 背景を元に戻す
+  $('.overlay2').removeClass('open');
+
+  // クリックした停止を再生に変更
+  $('.playVideo').val('再生');
+  $(this).removeClass('stopVideo');
+});
+
+
+
+
+
+
+
+<!-- ブックマークに登録 -->
+$(document).on("click",'.registBM',function(){
+  // 登録から解除に変更
+  $(this).removeClass('far');
+  $(this).removeClass('registBM');
+  $(this).addClass('fas');
+  $(this).addClass('delete');
+
+  var index = localStorage.length;
+  var id = $(this).attr('id');
+  console.log(index);
+
+  // クラスに合わせて内容を保存
+  if($(this).hasClass('trackBM')){
+    var trackData={
+      trackBody : $(this).closest('li').prop('outerHTML'),
+      trackPlayer : $(".player" + "."+ id +"").prop('outerHTML')
+    }
+    localStorage.setItem(id,JSON.stringify(trackData));
+  } else
+  if($(this).hasClass('albumBM')){
+    var albumData={
+      albumBody : $(this).closest('li').prop('outerHTML')
+    }
+    localStorage.setItem(id,JSON.stringify(albumData));
+  } else
+  if($(this).hasClass('artistBM')){
+    var artistData={
+      artistBody : $(this).closest('li').prop('outerHTML')
+    }
+    localStorage.setItem(id,JSON.stringify(artistData));
+  } else
+  if($(this).hasClass('videoBM')){
+    var videoData={
+      videoBody : $(this).closest('li').prop('outerHTML'),
+      videoPlayer : $(".videoPlayer" + "."+ id +"").prop('outerHTML')
+    }
+    localStorage.setItem(id,JSON.stringify(videoData));
+  }
+
+
+  //console.log(JSON.parse(localStorage.getItem(index)));
+  json_data = JSON.parse(localStorage.getItem(id));
+  console.log(json_data);
+});
+
+
+
+
+<!-- ブックマークから解除 -->
+$(document).on("click",".delete",function(){
+  var index = $('.delete').index(this);
+  console.log(index);
+
+  var delete_id = localStorage.key(index);
+  console.log(delete_id);
+  localStorage.removeItem(delete_id);
+
+  // 解除から登録に変更
+  $(this).removeClass('fas');
+  $(this).removeClass('delete');
+  $(this).addClass('far');
+  $(this).addClass('registBM');
+  // ブックマークに格納されていた場合取り除く
+  if( $(this).closest('#dataBookmark').length > 0 ){
+    $(this).closest('li').remove();
+  }
+});
+
+
+
+$('#clear').on("click",function(){
+  $('.clearAlert').fadeIn();
+});
+
+$('#cancel').on("click",function(){
+  $('.clearAlert').fadeOut();
+});
+
+// LocalStorageの全削除
+$('#allDelete').on("click",function(){
+    console.log("ALL-CLEAR");
+    $(window).scrollTop(0);
+    $("#dataBookmark").empty();
+    $(".resultPlayerBM").empty();
+    $(".resultVideoPlayerBM").empty();
+    localStorage.clear();
+    $('.clearAlert').fadeOut();
+});
+
+
+
+
+
+
+
+// スクロールでヘッダーにクラスの付け替え
+$(function() {
+  $(window).on('load scroll', function() {
+    var value = $(this).scrollTop();
+    if ( value > 120 ) {
+      $('header').addClass('is-animation');
+    } else {
+      $('header').removeClass('is-animation');
+    }
+  });
+});
+
+
+
+
+
+
+$('.menu-trigger').on('click',function(){
+  // 削除確認を非表示にする
+  $('.clearAlert').fadeOut();
+
+  if($(this).hasClass('active')){
+    $(this).removeClass('active');
+    //$('.wrapper').removeClass('open');
+    $('.main-menu').removeClass('open');
+    $('.overlay').removeClass('open');
+  } else {
+    $(this).addClass('active');
+    //$('.wrapper').addClass('open');
+    $('.main-menu').addClass('open');
+    $('.overlay').addClass('open');
+  }
+});
+
+$('.overlay').on('click',function(){
+  if($(this).hasClass('open')){
+    $(this).removeClass('open');
+    $('.menu-trigger').removeClass('active');
+    //$('.wrapper').removeClass('open');
+    $('.main-menu').removeClass('open');
+  }
+});
+
+
+
+
+<!-- トップに戻す -->
+$(document).on("click",'#goTop',function(){
+  // メインメニューの表示を解除
+  $('.menu-trigger').removeClass('active');
+  $('.overlay , .main-menu').removeClass('open');
+
+  $('body, html').animate({ scrollTop: 0 }, 400);
+
+  if($(this).hasClass('active')){
+
+  }else{
+    $('#topArea').fadeIn();
+    // メインメニューのナビを元に戻す
+    $('.searchType').removeClass('active');
+    // 結果表示エリアを非表示に戻す
+    $('.resultArea').removeClass('open');
+    // 可変部分を元に戻す
+    $('header , footer , .main-menu , .copyright').removeClass('track album artist musicVideo bookmark');
+
+    // メインメニューのナビをアクティブに
+    $('#goTop').addClass('active');
+
+    // 検索バーの非表示
+    $('.searchBox').hide();
+
+
+    // トップのビデオの再生
+    $('#mv-display > video').get(0).play();
+  }
+
+});
+
+
+
+<!-- トラックエリアを表示 -->
+$(document).on("click",'#goTrack',function(){
+  // メインメニューの表示を解除
+  $('.menu-trigger').removeClass('active');
+  $('.overlay , .main-menu').removeClass('open');
+
+  $('body, html').animate({ scrollTop: 0 }, 400);
+
+  if($(this).hasClass('active')){
+
+  }else
+  {
+    $('#topArea').fadeOut();
+    // メインメニューのナビを元に戻す
+    $('.searchType').removeClass('active');
+    // 結果表示エリアを非表示に戻す
+    $('.resultArea').removeClass('open');
+    // 可変部分を元に戻す
+    $('header , footer , .main-menu , .copyright').removeClass('track album artist musicVideo bookmark');
+
+    // メインメニューのナビをアクティブに
+    $('#goTrack').addClass('active');
+    // 結果表示エリアを表示
+    $('#trackArea').addClass('open');
+    //　クラスを付与して変化させる
+    $('header , footer , .main-menu , .copyright').addClass('track');
+
+    // 検索バーの表示
+    $('.searchBox').show();
+    $(".searchText").attr('placeholder', 'トラックを検索');
+    $(".searchText").focus();
+  }
+});
+
+
+
+<!-- アルバムエリアを表示 -->
+$(document).on("click",'#goAlbum',function(){
+  // メインメニューの表示を解除
+  $('.menu-trigger').removeClass('active');
+  $('.overlay , .main-menu').removeClass('open');
+
+  $('body, html').animate({ scrollTop: 0 }, 400);
+
+  if($(this).hasClass('active')){
+
+  }else
+  {
+    $('#topArea').fadeOut();
+    // メインメニューのナビを元に戻す
+    $('.searchType').removeClass('active');
+    // 結果表示エリアを非表示に戻す
+    $('.resultArea').removeClass('open');
+    // 可変部分を元に戻す
+    $('header , footer , .main-menu , .copyright').removeClass('track album artist musicVideo bookmark');
+
+    // メインメニューのナビをアクティブに
+    $('#goAlbum').addClass('active');
+    // 結果表示エリアを表示
+    $('#albumArea').addClass('open');
+    //　クラスを付与して変化させる
+    $('header , footer , .main-menu , .copyright').addClass('album');
+
+
+    // 検索バーの表示
+    $('.searchBox').show();
+    $(".searchText").attr('placeholder', 'アルバムを検索');
+    $(".searchText").focus();
+  }
+});
+
+
+
+<!-- アーティストエリアを表示 -->
+$(document).on("click",'#goArtist',function(){
+  // メインメニューの表示を解除
+  $('.menu-trigger').removeClass('active');
+  $('.overlay , .main-menu').removeClass('open');
+
+  $('body, html').animate({ scrollTop: 0 }, 400);
+
+  if($(this).hasClass('active')){
+
+  }else
+  {
+    $('#topArea').fadeOut();
+    // メインメニューのナビを元に戻す
+    $('.searchType').removeClass('active');
+    // 結果表示エリアを非表示に戻す
+    $('.resultArea').removeClass('open');
+    // 可変部分を元に戻す
+    $('header , footer , .main-menu , .copyright').removeClass('track album artist musicVideo bookmark');
+
+    // メインメニューのナビをアクティブに
+    $('#goArtist').addClass('active');
+    // 結果表示エリアを表示
+    $('#artistArea').addClass('open');
+    //　クラスを付与して変化させる
+    $('header , footer , .main-menu , .copyright').addClass('artist');
+
+
+    // 検索バーの表示
+    $('.searchBox').show();
+    $(".searchText").attr('placeholder', 'アーティストを検索');
+    $(".searchText").focus();
+  }
+});
+
+
+
+<!-- ミュージックビデオエリアを表示 -->
+$(document).on("click",'#goMusicVideo',function(){
+  // メインメニューの表示を解除
+  $('.menu-trigger').removeClass('active');
+  $('.overlay , .main-menu').removeClass('open');
+
+  $('body, html').animate({ scrollTop: 0 }, 400);
+
+  if($(this).hasClass('active')){
+
+  }else
+  {
+    $('#topArea').fadeOut();
+    // メインメニューのナビを元に戻す
+    $('.searchType').removeClass('active');
+    // 結果表示エリアを非表示に戻す
+    $('.resultArea').removeClass('open');
+    // 可変部分を元に戻す
+    $('header , footer , .main-menu , .copyright').removeClass('track album artist musicVideo bookmark');
+
+    // メインメニューのナビをアクティブに
+    $('#goMusicVideo').addClass('active');
+    // 結果表示エリアを表示
+    $('#mvArea').addClass('open');
+    //　クラスを付与して変化させる
+    $('header , footer , .main-menu , .copyright').addClass('musicVideo');
+
+
+    // 検索バーの表示
+    $('.searchBox').show();
+    $(".searchText").attr('placeholder', 'ミュージックビデオを検索');
+    $(".searchText").focus();
+  }
+});
+
+
+<!-- ブックマークエリアを表示 -->
+$(document).on("click",'#goBookmark',function(){
+  // メインメニューの表示を解除
+  $('.menu-trigger').removeClass('active');
+  $('.overlay , .main-menu').removeClass('open');
+
+  $('body, html').animate({ scrollTop: 0 }, 400);
+
+  if($(this).hasClass('active')){
+
+  }else
+  {
+    $('#topArea').fadeOut();
+    // メインメニューのナビを元に戻す
+    $('.searchType').removeClass('active');
+    // 結果表示エリアを非表示に戻す
+    $('.resultArea').removeClass('open');
+    // 可変部分を元に戻す
+    $('header , footer , .main-menu , .copyright').removeClass('track album artist musicVideo bookmark');
+
+    // メインメニューのナビをアクティブに
+    $('#goBookmark').addClass('active');
+    // 結果表示エリアを表示
+    $('#bookmarkArea').addClass('open');
+    //　クラスを付与して変化させる
+    $('header , footer , .main-menu , .copyright').addClass('bookmark');
+
+
+    // 検索バーの非表示
+    $('.searchBox').hide();
+
+    <!-- ブックマークの表示 -->
+    // 重複防止のため空にする
+    $("#dataBookmark").empty();
+    $(".resultPlayerBM").empty();
+    $(".resultVideoPlayerBM").empty();
+
+    // HTMLに追加
+    var body = "";
+    var tPlayer = "";
+    var vPlayer = "";
+
+    for(var j=0; j<localStorage.length; j++){
+
+      var key = localStorage.key(j);
+      json_data = JSON.parse(localStorage.getItem(key));
+      console.log(key);
+      console.log(json_data);
+      // 文字列との比較用にJSONにエンコード
+      json_data2 =JSON.stringify(json_data);
+
+      if(json_data2.indexOf('trackBody') != -1 ){
+        body += json_data.trackBody;
+        tPlayer += json_data.trackPlayer;
+      } else
+      if( json_data2.indexOf('albumBody') != -1 ){
+        body += json_data.albumBody;
+      } else
+      if( json_data2.indexOf('artistBody') != -1 ){
+        body += json_data.artistBody;
+      } else
+      if( json_data2.indexOf('videoBody') != -1 ){
+        body += json_data.videoBody;
+        vPlayer += json_data.videoPlayer;
+      }
+    }
+
+    // HTMLに追加
+    $("#dataBookmark").append(body);
+    $(".resultPlayerBM").append(tPlayer);
+    $(".resultVideoPlayerBM").append(vPlayer);
+
+    // activeを付与して表示させる
+    $('#trackT , #albumT , #artistT , #videoT').addClass('active');
+  }
+});
+
+
+
+
+
+<!-- trackブックマークの切り替え -->
+$(document).on("click",'#trackT',function(){
+  $(this).toggleClass('active');
+
+  if($(this).hasClass('active')){
+    $("#dataBookmark > .trackBody").show();
+  }else
+  {
+    $("#dataBookmark > .trackBody").hide();
+  }
+});
+
+<!-- albumブックマークの切り替え -->
+$(document).on("click",'#albumT',function(){
+  $(this).toggleClass('active');
+
+  if($(this).hasClass('active')){
+    $("#dataBookmark > .albumBody").show();
+  }else
+  {
+    $("#dataBookmark > .albumBody").hide();
+  }
+});
+
+<!-- artistブックマークの切り替え -->
+$(document).on("click",'#artistT',function(){
+  $(this).toggleClass('active');
+
+  if($(this).hasClass('active')){
+    $("#dataBookmark > .artistBody").show();
+  }else
+  {
+    $("#dataBookmark > .artistBody").hide();
+  }
+});
+
+<!-- videoブックマークの切り替え -->
+$(document).on("click",'#videoT',function(){
+  $(this).toggleClass('active');
+
+  if($(this).hasClass('active')){
+    $("#dataBookmark > .videoBody").show();
+  }else
+  {
+    $("#dataBookmark > .videoBody").hide();
+  }
+});
+
+
+
+</script>
+</body>
+</html>
