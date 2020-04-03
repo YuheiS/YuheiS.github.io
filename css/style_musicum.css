@@ -1,0 +1,2869 @@
+body{
+  position: relative;
+}
+
+ul{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+div.wrapper{
+  position: relative;
+  min-width: 300px;
+  font-family: sans-serif, "dinregular";
+  /* font-family: 'Roboto Slab', serif; */
+}
+
+main{
+  width: 100%;
+  height: auto;
+  position: relative;
+  background: #111;
+  background-image: url("../images/bg02.png");
+  background-repeat: repeat;
+}
+
+
+
+/* メニューやビデオ表示時の背景 */
+.overlay {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity .5s;
+}
+
+.overlay2 {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  opacity: 0;
+  transition: opacity .5s;
+}
+
+.overlay.open,
+.overlay2.open {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+
+
+
+
+/* メニュー表示アイコン */
+.menu-trigger {
+  display: inline-block;
+  width: 65px;
+  height: 65px;
+  border-radius: 50px;
+  vertical-align: middle;
+  cursor: pointer;
+  position: relative;
+  float: right;
+  margin: 6px 10px;
+  z-index: 200;
+  transition: all .3s;
+}
+
+.menu-trigger:hover{
+  background: rgba(0, 0, 0,0.3);
+}
+
+  /* アイコンの横線 */
+.menu-trigger span {
+  display: inline-block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 45px;
+  margin-left: 10px;
+  height: 5px;
+  background: #fff;
+  transition: all .5s;
+}
+
+/* アクティブ時のアイコンの変化 */
+.menu-trigger span:nth-of-type(1) {
+  top: 15px;
+}
+
+.menu-trigger.active span:nth-of-type(1) {
+  transform: translateY(15px) rotate(-45deg);
+}
+
+.menu-trigger span:nth-of-type(2) {
+  top: 30px;
+}
+
+.menu-trigger.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.menu-trigger span:nth-of-type(3) {
+  bottom: 15px;
+}
+
+.menu-trigger.active span:nth-of-type(3) {
+  transform: translateY(-15px) rotate(45deg);
+}
+
+
+
+/* メインメニュー */
+nav.main-menu {
+  width: 18%;
+  min-width: 270px;
+  height: 100%;
+  padding-top: 100px;
+  background: rgb(245, 139, 29,0.8);
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 180;
+  transform: translate(100%);
+  transition: all .5s;
+  /*border-left: solid 3px rgb(193, 98, 0 ,0.9);*/
+}
+
+nav.main-menu.track{
+  background: rgb(53, 151, 241, 0.8);
+}
+
+nav.main-menu.album{
+  background: rgb(130, 241, 53, 0.8);
+}
+
+nav.main-menu.artist{
+  background: rgb(241, 53, 138, 0.8);
+}
+
+nav.main-menu.musicVideo{
+  background: rgb(198, 53, 241, 0.8);
+}
+
+nav.main-menu.bookmark{
+  background: rgb(241, 233, 53, 0.8);
+}
+
+nav.main-menu.open {
+  transform: translateZ(0);
+}
+
+nav.main-menu ul li{
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  padding: 12px 0;
+}
+
+nav.main-menu ul li p{
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+  /* メニューの中身の切替時の変化 */
+nav.main-menu ul li#goTop:hover{
+  background: #F58B1D;
+}
+
+nav.main-menu ul li#goTop.active{
+  background: #fff;
+  color: #F58B1D;
+}
+
+nav.main-menu ul li#goTrack:hover{
+  background: #3597f1;
+}
+
+nav.main-menu ul li#goTrack.active{
+  background: #fff;
+  color: #3597f1;
+}
+
+nav.main-menu ul li#goAlbum:hover{
+  background: #82f135;
+}
+
+nav.main-menu ul li#goAlbum.active{
+  background: #fff;
+  color: #82f135;
+}
+
+nav.main-menu ul li#goArtist:hover{
+  background: #f1358a;
+}
+
+nav.main-menu ul li#goArtist.active{
+  background: #fff;
+  color: #f1358a;
+}
+
+nav.main-menu ul li#goMusicVideo:hover{
+  background:  #c635f1;
+}
+
+nav.main-menu ul li#goMusicVideo.active{
+  background: #fff;
+  color:  #c635f1;
+}
+
+nav.main-menu ul li#goBookmark:hover{
+  background:  #f9f02f;
+}
+
+nav.main-menu ul li#goBookmark.active{
+  background: #fff;
+  color:  #f9f02f;
+}
+
+/* ヘッダー */
+header{
+  position: fixed;
+  top: 0;
+  z-index: 120;
+  background: #f58b1d;
+  border-bottom: solid 3px #c16200;
+  color: #fff;
+  width: 100%;
+  min-width: 300px;
+  height: auto;
+  transition: .3s;
+  display: flex;
+  justify-content: space-between;
+  -webkit-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.3), inset 0px 0px 1px 1px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.3), inset 0px 0px 1px 1px rgba(0,0,0,0.1);
+}
+
+  /* エリア切替時のヘッダー */
+header.track{
+  background: #3597f1;
+  border-bottom: solid 3px #0b4683;
+}
+
+header.album{
+  background: #82f135;
+  border-bottom: solid 3px #3c830b;
+}
+
+header.artist{
+  background: #f1358a;
+  border-bottom: solid 3px #830b0b;
+}
+
+header.musicVideo{
+  background: #c635f1;
+  border-bottom: solid 3px #7d0b83;
+}
+
+header.bookmark{
+  background: #f9f02f;
+  border-bottom: solid 3px #83740b;
+}
+
+    /* PC用ロゴ */
+header h1 img{
+  margin: 6px 16px 4px;
+}
+
+/* 検索 */
+div.searchBox{
+  padding-top: 20px;
+  box-sizing: border-box;
+}
+
+  /* 検索-テキストボックス */
+div.searchBox .searchText{
+  width: 450px;
+  margin-left: 5px;
+  font-size: 16px;
+  -webkit-box-shadow: inset 0px 0px 1px 1px rgba(120,120,120,0.1);
+  box-shadow: inset 0px 0px 1px 1px rgba(120,120,120,0.1);
+}
+
+  /* 検索-ボタン */
+div.searchBox #search{
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 5px 8px;
+  border: solid 3px #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: #f58b1d;
+  font-size: 16px;
+  -webkit-box-shadow: 0px 3px 3px 2px rgba(0,0,0,0.2);
+  box-shadow: 0px 3px 3px 2px rgba(0,0,0,0.2);
+}
+
+div.searchBox #search:hover{
+  transform: translateY(-2px);
+  transform: scale(1.05);
+}
+
+div.searchBox #search:active{
+  transform: scale(0.9);
+}
+
+
+  /* ある地点までスクロールした時のヘッダー */
+header.is-animation{
+  background: rgb(245, 139, 29, 0.6);
+}
+
+header.is-animation.track{
+  background: rgb(53, 151, 241, 0.6);
+}
+
+header.is-animation.album{
+  background: rgb(130, 241, 53, 0.6);
+}
+
+header.is-animation.artist{
+  background: rgb(241, 53, 138, 0.6);
+}
+
+header.is-animation.musicVideo{
+  background: rgb(198, 53, 241, 0.6);
+}
+
+header.is-animation.bookmark{
+  background: rgb(241, 233, 53, 0.6);
+}
+
+
+
+/* フッター */
+footer{
+  position: relative;
+  z-index: 110;
+  background: #f58b1d;
+  color: #fff;
+  width: 100%;
+  height: auto;
+  border-top: solid 3px #c16200;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  -webkit-box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.3), inset 0px 0px 1px 1px rgba(0,0,0,0.1), inset 0px 0px 30px 2px rgba(0,0,0,0.1);
+  box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.3), inset 0px 0px 1px 1px rgba(0,0,0,0.1), inset 0px 0px 30px 2px rgba(0,0,0,0.1);;
+}
+
+  /* エリア切替時のフッター */
+footer.track{
+  background: #3597f1;
+  border-top: solid 3px #0b4683;
+}
+
+footer.album{
+  background: #82f135;
+  border-top: solid 3px #3c830b;
+}
+
+footer.artist{
+  background: #f1358a;
+  border-top: solid 3px #830b0b;;
+}
+
+footer.musicVideo{
+  background: #c635f1;
+  border-top: solid 3px #7d0b83;
+}
+
+footer.bookmark{
+  background: #f9f02f;
+  border-top: solid 3px #83740b;
+}
+
+  /* フッターのコピーライト */
+footer .copyright{
+  display: inline-block;
+  background: #e0770b;
+  font-size: 18px;
+  padding: 4px 10px;
+  margin: 6px 0px;
+  border-radius: 60px;
+  -webkit-box-shadow: inset 0px 0px 1px 2px rgba(0,0,0,0.2), 0px 0px 2px 4px rgba(255,255,255,0.1);
+  box-shadow: inset 0px 0px 1px 2px rgba(0,0,0,0.2), 0px 0px 2px 4px rgba(255,255,255,0.1);
+}
+
+    /* エリア切替時のフッターのコピーライト */
+.copyright.track{
+  background: #0f5daf;
+}
+
+.copyright.album{
+  background: #4ba70c;
+}
+
+.copyright.artist{
+  background: #b30b0b;
+}
+
+.copyright.musicVideo{
+  background: #a40aac;
+}
+
+.copyright.bookmark{
+  background: #b49f0d;
+}
+
+
+
+
+
+/* メインビジュアル */
+#main-visual{
+  width: 100%;
+  margin: 0%;
+  height: auto;
+  background: #282524;
+  box-sizing: border-box;
+  position: relative;
+}
+
+#main-visual #mv-display{
+  width: 100%;
+  min-height: 10%;
+}
+
+#main-visual video{
+  width: 100%;
+  margin: 0%;
+  opacity: 1;
+  border: solid 5px #000;
+  box-sizing: border-box;
+  filter: brightness(100%);
+}
+
+  /* エラー用の背景 */
+#main-visual .altV{
+  width: 100%;
+  height: 650px;
+  opacity: 1;
+  border: solid 5px #000;
+  box-sizing: border-box;
+  filter: brightness(80%);
+  background-image: url("../images/bg02.png");
+  background-repeat: repeat;
+}
+
+  /* サブタイトル */
+div.subTitle{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
+  margin-top: 30px;
+  font-family: 'Black Ops One', cursive;
+  position: absolute;
+  z-index: 8;
+  width: 100%;
+}
+
+div.subTitle h2{
+  font-size: 68px;
+  font-weight: bold;
+  letter-spacing: 8px;
+  text-indent: 8px;
+  text-shadow:
+7px 7px 7px #f58b1d,
+7px -7px 7px #f58b1d,
+-7px 7px 7px #f58b1d,
+-7px -7px 7px #ffa74a;
+}
+
+div.subTitle h3{
+  font-size: 46px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-indent: 3px;
+  margin: 60px 0px 0px;
+  text-shadow:
+2px 2px 2px #f58b1d,
+2px -2px 2px #f58b1d,
+-2px 2px 2px #f58b1d,
+-2px -2px 2px #ffa74a;
+}
+
+  /* サブタイトルのアニメーション用設定 */
+span.subT1{
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-120%);
+  transition: all 0.5s;
+}
+
+span.subT2{
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(120%);
+  transition: all 0.5s;
+}
+
+h3.subT3{
+  opacity: 0;
+  transform: translateY(150%);
+  transition: all 1.5s;
+}
+
+  /* レスポンシブ用ロゴ */
+div.mobile-logo{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+div.mobile-logo img{
+  width: 24%;
+  height: auto;
+  margin: 2% 0px 1.5%;
+  filter: brightness(90%);
+  display: none;
+}
+
+/* エラーメッセージ */
+p.error{
+  text-align: center;
+  color: #f74f10;
+  padding: 5px 0px;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-indent: 3px;
+  text-shadow: 2px 8px 6px rgba(0,0,0,0.2), 0px -5px 35px rgba(255,255,255,0.3);
+}
+
+
+
+/* トップメニュー */
+nav.top-menu{
+  display: inline-block;
+  background-color: #eee;
+  border: solid 3px #222;
+  margin: 70px 0px 90px;
+  -webkit-box-shadow: inset 0px 0px 19px 2px rgba(0,0,0,0.39), 0px 0px 19px 4px rgba(0,0,0,0.2);
+  box-shadow: inset 0px 0px 19px 2px rgba(0,0,0,0.39), 0px 0px 19px 4px rgba(0,0,0,0.2);
+}
+
+nav.top-menu ul{
+  display: flex;
+  align-items: center;
+}
+
+nav.top-menu ul li{
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all 0.3s;
+  font-size: 24px;
+  padding: 30px 40px;
+}
+
+nav.top-menu ul li span:nth-child(1){
+  font-size: 18px;
+}
+
+nav.top-menu ul li#goTrack {
+    margin: 20px;
+    border: solid 1px #bbb;
+    -webkit-box-shadow: inset 0px 0px 19px 3px rgba(0,0,0,0.13);
+    box-shadow: inset 0px 0px 19px 3px rgba(0,0,0,0.13);
+}
+
+nav.top-menu ul li#goTrack:hover {
+  color: #3597f1;
+  border: solid 1px #3597f1;
+  transform: scale(0.92);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+nav.top-menu ul li#goAlbum {
+    margin: 20px;
+    border: solid 1px #bbb;
+    -webkit-box-shadow: inset 0px 0px 19px 3px rgba(0,0,0,0.13);
+    box-shadow: inset 0px 0px 19px 3px rgba(0,0,0,0.13);
+}
+
+nav.top-menu ul li#goAlbum:hover {
+  color: #82f135;
+  border: solid 1px #82f135;
+  transform: scale(0.92);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+nav.top-menu ul li#goArtist {
+    margin: 20px;
+    border: solid 1px #bbb;
+    -webkit-box-shadow: inset 0px 0px 19px 3px rgba(0,0,0,0.13);
+    box-shadow: inset 0px 0px 19px 3px rgba(0,0,0,0.13);
+}
+
+nav.top-menu ul li#goArtist:hover {
+  color: #f1358a;
+  border: solid 1px #f1358a;
+  transform: scale(0.92);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+nav.top-menu ul li#goMusicVideo {
+    margin: 20px;
+    border: solid 1px #bbb;
+    -webkit-box-shadow: inset 0px 0px 19px 3px rgba(0,0,0,0.13);
+    box-shadow: inset 0px 0px 19px 3px rgba(0,0,0,0.13);
+}
+
+nav.top-menu ul li#goMusicVideo:hover {
+  color: #c635f1;
+  border: solid 1px #c635f1;
+  transform: scale(0.92);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+nav.top-menu ul li#goBookmark {
+  margin: 15px;
+  border: solid 1px #bbb;
+  -webkit-box-shadow: inset 0px 0px 19px 3px rgba(0,0,0,0.13);
+  box-shadow: inset 0px 0px 19px 3px rgba(0,0,0,0.13);
+}
+
+nav.top-menu ul li#goBookmark:hover {
+  color: #f9f02f;
+  border: solid 1px #f9f02f;
+  transform: scale(0.92);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* 各表示エリア */
+section{
+  padding-top: 120px;
+}
+
+section#topArea{
+  padding-top: 85px;
+  background: #ffa74a;
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  z-index: 10;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+section#trackArea{
+  background: #bcedf6;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  z-index: 30;
+  transform: translateX(-100%);
+  opacity: 1;
+  transition: all .5s;
+}
+
+section#albumArea{
+  background: #bff6bc;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  z-index: 30;
+  transform: translateX(100%);
+  opacity: 1;
+  transition: all .5s;
+}
+
+section#artistArea{
+  background: #f6bcbc;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  bottom: 0;
+  z-index: 30;
+  transform: translateY(100%);
+  opacity: 1;
+  transition: all .5s;
+}
+
+section#mvArea{
+  background: #eebcf6;
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  z-index: 30;
+  transform: translateY(-100%);
+  opacity: 1;
+  transition: all .5s;
+}
+
+section#bookmarkArea{
+  background: #f6f5bc;
+  width: 100%;
+  height: auto;
+  transform:translate(100% , -100%);
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 30;
+  opacity: 0;
+  transition: all .5s;
+}
+
+  /* 表示エリアが展開された時 */
+section#trackArea.open,
+section#albumArea.open,
+section#artistArea.open,
+section#mvArea.open,
+section#bookmarkArea.open {
+  transform: translate(0);
+  opacity: 1;
+  position: relative;
+  min-height: 1000px;
+  padding-bottom: 200px;
+}
+
+/* 各エリアトップのアイコン画像 */
+.trackicon,
+.albumicon,
+.artisticon,
+.videoicon{
+  padding: 60px 0px 16px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 90%;
+  margin: 0% 5%;
+  -webkit-box-shadow: 0px 3px 1px -1px rgba(0,0,0,0.4);
+  box-shadow: 0px 3px 1px -1px rgba(0,0,0,0.4);
+}
+
+.trackicon {
+  border-bottom: 6px solid #0f5daf;
+}
+
+.albumicon {
+  border-bottom: 6px solid #4ba70c;
+}
+
+.artisticon {
+  border-bottom: 6px solid #b30b0b;
+}
+
+.videoicon {
+  border-bottom: 6px solid #a40aac;
+}
+
+  /* アイコン直下のタイトル */
+.trackicon h3,
+.albumicon h3,
+.artisticon h3,
+.videoicon h3{
+  margin-top: 12px;
+  font-size: 48px;
+  letter-spacing: .1em;
+  text-indent: .1em;
+  text-shadow: 1px 3px 0 #969696, 1px 13px 5px #aba8a8;
+  font-family: 'Russo One', sans-serif;
+}
+
+.trackicon h3{
+  color: #0f5daf;
+}
+
+.albumicon h3{
+  color: #4ba70c;
+}
+
+.artisticon h3{
+  color: #b30b0b;
+}
+
+.videoicon h3{
+  color: #a40aac;
+}
+
+
+
+/* ブックマークのヘッダー部 */
+ul.bookmarkhead{
+  display: flex;
+  justify-content: center;
+  background: #333;
+  width: 90%;
+  margin: 0% 5%;
+  font-size: 20px;
+  color: #ddd;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 3px 1px rgba(0,0,0,.1), 0 3px 3px 1px rgba(0,0,0,.2);
+  box-shadow: 0 0 3px 1px rgba(0,0,0,.1), 0 3px 3px 1px rgba(0,0,0,.2);
+}
+
+ul.bookmarkhead li{
+  padding: 15px 0px 10px;
+  flex-basis: 24%;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: all 0.2s;
+  border-bottom: 5px solid #444;
+}
+
+ul.bookmarkhead li#trackT:hover{
+  border-bottom: 5px solid #3597f1;
+}
+
+ul.bookmarkhead li#trackT.active{
+  color: #3597f1;
+  border-bottom: 5px solid #3597f1;
+}
+
+ul.bookmarkhead li#albumT:hover{
+  border-bottom: solid 5px #82f135;
+}
+
+ul.bookmarkhead li#albumT.active{
+  color: #82f135;
+  border-bottom: solid 5px #82f135;
+}
+
+ul.bookmarkhead li#artistT:hover{
+  border-bottom: solid 5px #f1358a;
+}
+
+ul.bookmarkhead li#artistT.active{
+  color: #f1358a;
+  border-bottom: solid 5px #f1358a;
+}
+
+ul.bookmarkhead li#videoT:hover{
+  border-bottom: solid 5px #c635f1;
+}
+
+ul.bookmarkhead li#videoT.active{
+  color: #c635f1;
+  border-bottom: solid 5px #c635f1;
+}
+
+ul.bookmarkhead li#trackT.active:hover,
+ul.bookmarkhead li#albumT.active:hover,
+ul.bookmarkhead li#artistT.active:hover,
+ul.bookmarkhead li#videoT.active:hover{
+  border-bottom: solid 5px #333;
+}
+
+/* ブックマークのフッター部 */
+div.bookmarkFoot{
+  padding: 16px 0px;
+  background: #333;
+  width: 90%;
+  margin: 0% 5%;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 3px 1px rgba(0,0,0,.1), 0 3px 3px 1px rgba(0,0,0,.2);
+  box-shadow: 0 0 3px 1px rgba(0,0,0,.1), 0 3px 3px 1px rgba(0,0,0,.2);
+}
+
+/* ブックマーク全削除ボタン */
+.clear-btn{
+  width: 50%;
+  margin: 24px 25% 0px;
+  text-align: center;
+}
+
+#clear{
+  display: block;
+  color: #333;
+  background: #fff;
+  cursor: pointer;
+  font-size: 26px;
+  font-weight: bold;
+  padding: 20px 0px;
+  box-sizing: border-box;
+  border: solid 3px #333;
+  border-radius: 15px;
+  transition: all 0.3s;
+  letter-spacing: 1px;
+  text-indent: 1px;
+  -webkit-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.1);
+  box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.1);
+}
+
+#clear:hover{
+  color: #ffff00;
+  letter-spacing: 3px;
+  background: #000;
+  border: double 6px #ffff00;
+  box-sizing: border-box;
+}
+
+  /* 全削除前の確認 */
+div.clearAlert{
+  background: #fff;
+  width: 60%;
+  height: auto;
+  margin: 25px 20% 0px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  border: solid 3px #b49f0d;
+  border-radius: 20px;
+  font-size: 20px;
+  padding: 16px 0px;
+  -webkit-box-shadow: inset 0px 0px 16px 2px rgba(0,0,0,0.2);
+  box-shadow: inset 0px 0px 16px 2px rgba(0,0,0,0.2);
+}
+
+    /* 確認の選択肢 */
+div.clearAlert div.select{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding: 20px 0px 0px;
+}
+
+#allDelete,
+#cancel{
+  font-size: 26px;
+  background: #ddd;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-indent: 1px;
+  border: solid 2px #bbb;
+  -webkit-box-shadow: 0px 1px 3px 2px rgba(0,0,0,0.1);
+  box-shadow: 0px 1px 3px 2px rgba(0,0,0,0.1);
+  transition: all 0.1s;
+}
+
+#allDelete:hover,
+#cancel:hover{
+  transform: scale(1.03);
+}
+
+#allDelete:active{
+  background: #fff;
+  transform: scale(0.98);
+}
+
+#cancel:active{
+  background: #aaa;
+  transform: scale(0.98);
+}
+
+
+
+
+
+/* 検索結果表示エリア */
+.resultTrack,
+.resultAlbum,
+.resultArtist,
+.resultMV,
+.resultBookmark {
+  width: 100%;
+  position: relative;
+}
+
+  /* 検索結果のボタン表示エリア */
+div#page-btnTrack,
+div#page-btnTrack2,
+div#page-btnAlbum,
+div#page-btnAlbum2,
+div#page-btnArtist,
+div#page-btnArtist,
+div#page-btnMV,
+div#page-btnMV2{
+  width: 94%;
+  margin: 0% 3%;
+}
+
+  /* 検索結果のボタン */
+div#next,
+div#next2,
+div#prev,
+div#prev2{
+  position: relative;
+  z-index: 5;
+  font-size: 36px;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+  color: #fff;
+  margin: 10px 5px 12px 5px;
+  border: solid 3px #fff;
+  box-sizing: border-box;
+  /* アニメーション用の設定 */
+    opacity: 0;
+    transition: all .5s;
+}
+
+div#page-btnTrack div#next,
+div#page-btnTrack2 div#next2,
+div#page-btnTrack div#prev,
+div#page-btnTrack2 div#prev2{
+  background: #3597f1;
+}
+
+div#page-btnAlbum div#next,
+div#page-btnAlbum2 div#next2,
+div#page-btnAlbum div#prev,
+div#page-btnAlbum2 div#prev2{
+  background: #82f135;
+}
+
+div#page-btnArtist div#next,
+div#page-btnArtist2 div#next2,
+div#page-btnArtist div#prev,
+div#page-btnArtist2 div#prev2{
+  background: #f1358a;
+}
+
+div#page-btnMV div#next,
+div#page-btnMV2 div#next2,
+div#page-btnMV div#prev,
+div#page-btnMV2 div#prev2{
+  background: #c635f1;
+}
+
+div#page-btnTrack div#next:hover,
+div#page-btnTrack2 div#next2:hover,
+div#page-btnTrack div#prev:hover,
+div#page-btnTrack2 div#prev2:hover{
+  background: #fff;
+  color: #3597f1;
+  border: solid 3px #3597f1;
+}
+
+div#page-btnAlbum div#next:hover,
+div#page-btnAlbum2 div#next2:hover,
+div#page-btnAlbum div#prev:hover,
+div#page-btnAlbum2 div#prev2:hover{
+  background: #fff;
+  color: #82f135;
+  border: solid 3px #82f135;
+}
+
+div#page-btnArtist div#next:hover,
+div#page-btnArtist2 div#next2:hover,
+div#page-btnArtist div#prev:hover,
+div#page-btnArtist2 div#prev2:hover{
+  background: #fff;
+  color: #f1358a;
+  border: solid 3px #f1358a;
+}
+
+div#page-btnMV div#next:hover,
+div#page-btnMV2 div#next2:hover,
+div#page-btnMV div#prev:hover,
+div#page-btnMV2 div#prev2:hover{
+  background: #fff;
+  color: #c635f1;
+  border: solid 3px #c635f1;
+}
+
+div#next:active,
+div#next2:active,
+div#prev:active,
+div#prev2:active{
+  background: #bbb;
+}
+
+div#page-btnTrack div#prev,
+div#page-btnTrack2 div#prev2,
+div#page-btnAlbum div#prev,
+div#page-btnAlbum2 div#prev2,
+div#page-btnArtist div#prev,
+div#page-btnArtist2 div#prev2,
+div#page-btnMV div#prev,
+div#page-btnMV2 div#prev2{
+  float: left;
+  border-radius: 40px 10px 10px 40px;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000, 12px 10px 30px 4px rgba(0,0,0,0.2);
+  box-shadow: 0px 10px 13px -7px #000000, 12px 10px 30px 4px rgba(0,0,0,0.2);
+  /* アニメーション用の設定 */
+    transform: translateX(-35%);
+}
+
+div#page-btnTrack div#next,
+div#page-btnTrack2 div#next2,
+div#page-btnAlbum div#next,
+div#page-btnAlbum2 div#next2,
+div#page-btnArtist div#next,
+div#page-btnArtist2 div#next2,
+div#page-btnMV div#next,
+div#page-btnMV2 div#next2{
+  float: right;
+    border-radius: 10px 40px 40px 10px;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000, -12px 10px 30px 4px rgba(0,0,0,0.2);
+  box-shadow: 0px 10px 13px -7px #000000, -12px 10px 30px 4px rgba(0,0,0,0.2);
+  /* アニメーション用の設定 */
+    transform: translateX(35%);
+}
+
+
+
+
+
+/* 各表示エリアの検索結果データ格納部 */
+#dataTrack,
+#dataAlbum,
+#dataArtist,
+#dataMV,
+#dataBookmark{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0% 5%;
+  min-height: 80px;
+}
+
+
+
+/* リザルトのヘッダー部 */
+li.resultHead{
+  background: #333;
+  color: #fff;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 3px 1px rgba(0,0,0,.1), 0 3px 3px 1px rgba(0,0,0,.2);
+  box-shadow: 0 0 3px 1px rgba(0,0,0,.1), 0 3px 3px 1px rgba(0,0,0,.2);
+  text-align: center;
+  font-size: 22px;
+  opacity: 0;
+  padding: 10px 0px;
+  margin-bottom: 6px;
+}
+
+  /* 検索結果の表示件数 */
+li.resultHead span{
+  font-size: 38px;
+}
+
+ul#dataTrack li.resultHead span{
+  color: #3597f1;
+}
+
+ul#dataAlbum li.resultHead span{
+  color: #82f135;
+}
+
+ul#dataArtist li.resultHead span{
+  color: #f1358a;
+}
+
+ul#dataMV li.resultHead span{
+  color: #c635f1;
+}
+
+li.resultHead p{
+  margin-top: 8px;
+}
+
+/* リザルトのボディ部 */
+li.trackBody,
+li.albumBody,
+li.artistBody,
+li.videoBody{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 0px;
+  -webkit-box-shadow: 0 0 3px 1px rgba(0,0,0,.1), 0 3px 3px 1px rgba(0,0,0,.2), inset 0 0 30px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 0 3px 1px rgba(0,0,0,.1), 0 3px 3px 1px rgba(0,0,0,.2), inset 0 0 30px 2px rgba(0,0,0,0.1);
+  margin: 6px 0px;
+  border-radius: 10px;
+  background: #fff;
+  border: solid 2px #333;
+  box-sizing: border-box;
+  opacity: 0;
+}
+
+li.trackBody img,
+li.albumBody img,
+li.artistBody img,
+li.videoBody img{
+  width: 80%;
+  margin-top: 10%;
+  margin-left: 10%;
+}
+
+li.trackBody{
+  border: solid 3px #0b4683;
+}
+
+li.albumBody{
+  border: solid 3px #3c830b;
+}
+
+li.artistBody{
+  border: solid 3px #830b0b;
+}
+
+li.videoBody{
+  border: solid 3px #7d0b83;
+}
+
+  /* リザルトの各情報 */
+li.trackBody div,
+li.albumBody div,
+li.artistBody div,
+li.videoBody div{
+  padding: 10px 5px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+  /* リザルト-トラック */
+li.trackBody div:nth-child(1){
+  flex-basis: 10%;
+}
+
+li.trackBody div:nth-child(2){
+  flex-basis: 40%;
+}
+
+li.trackBody div:nth-child(2) a{
+  font-size: 28px;
+}
+
+li.trackBody div:nth-child(3){
+  flex-basis: 30%;
+}
+
+li.trackBody div:nth-child(4){
+  flex-basis: 20%;
+}
+
+li.trackBody div:nth-child(5){
+  flex-basis: 20%;
+}
+
+li.trackBody div:nth-child(6){
+  flex-basis: 10%;
+}
+
+li.trackBody div:nth-child(7){
+  flex-basis: 30%;
+}
+
+li.trackBody div:nth-child(8){
+  flex-basis: 20%;
+}
+
+li.trackBody div:nth-child(9){
+  flex-basis: 20%;
+}
+
+
+  /* リザルト-アルバム */
+li.albumBody div:nth-child(1){
+  flex-basis: 10%;
+}
+
+li.albumBody div:nth-child(2){
+  flex-basis: 50%;
+}
+
+li.albumBody div:nth-child(2) a{
+    font-size: 28px;
+}
+
+li.albumBody div:nth-child(3){
+  flex-basis: 40%;
+}
+
+li.albumBody div:nth-child(4){
+  flex-basis: 20%;
+    font-size: 14px;
+}
+
+li.albumBody div:nth-child(5){
+  flex-basis: 20%;
+}
+
+li.albumBody div:nth-child(6){
+  flex-basis: 10%;
+}
+
+li.albumBody div:nth-child(7){
+  flex-basis: 30%;
+}
+
+li.albumBody div:nth-child(8){
+  flex-basis: 20%;
+}
+
+
+
+  /* リザルト-アーティスト */
+li.artistBody div:nth-child(1){
+  flex-basis: 40%;
+}
+
+li.artistBody div:nth-child(1) a{
+  font-size: 28px;
+}
+
+li.artistBody div:nth-child(2){
+  flex-basis: 15%;
+  font-size: 16px;
+}
+
+li.artistBody div:nth-child(3){
+  flex-basis: 25%;
+  font-size: 18px;
+}
+
+li.artistBody div:nth-child(4){
+  flex-basis: 20%;
+}
+
+
+
+  /* リザルト-ビデオ */
+li.videoBody div:nth-child(1){
+  flex-basis: 10%;
+}
+
+li.videoBody div:nth-child(2){
+  flex-basis: 50%;
+}
+
+li.videoBody div:nth-child(2) a{
+  font-size: 28px;
+}
+
+li.videoBody div:nth-child(3){
+  flex-basis: 40%;
+}
+
+li.videoBody div:nth-child(4){
+  flex-basis: 20%;
+}
+
+li.videoBody div:nth-child(5){
+  flex-basis: 10%;
+}
+
+li.videoBody div:nth-child(6){
+  flex-basis: 30%;
+}
+
+li.videoBody div:nth-child(7){
+  flex-basis: 20%;
+}
+
+li.videoBody div:nth-child(8){
+  flex-basis: 20%;
+}
+
+
+/* ジャンル名 */
+.trackBody .genre,
+.albumBody .genre,
+.videoBody .genre{
+  margin-top: 5px;
+  font-size: 18px;
+  background: #111;
+  color: #fff;
+  width: 80%;
+  padding: 4px 0px;
+  margin-left: 10%;
+}
+
+.artistBody .genre{
+  background: #111;
+  color: #fff;
+  padding: 4px 7px;
+}
+
+/* トラックNo. */
+span.num{
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* 外部リンク */
+li.trackBody div a{
+  color: #3597f1;
+  font-weight: bold;
+}
+
+li.albumBody div a{
+  color: #82f135;
+  font-weight: bold;
+}
+
+li.artistBody div a{
+  color: #f1358a;
+  font-weight: bold;
+}
+
+li.videoBody div a{
+  color: #c635f1;
+  font-weight: bold;
+}
+
+li.trackBody div a:hover,
+li.albumBody div a:hover,
+li.artistBody div a:hover,
+li.videoBody div a:hover{
+  text-decoration: underline;
+  filter: brightness(1.5);
+}
+
+/* id名 */
+li.trackBody p.id,
+li.albumBody p.id,
+li.videoBody p.id{
+  margin-top: 5px;
+  font-size: 14px;
+  color: #555;
+}
+
+p.crAlbum{
+  font-size: 14px;
+}
+
+p.time,
+p.price,
+p.release{
+  font-size: 18px;
+}
+
+p.count{
+  font-size: 18px;
+}
+
+
+
+/* Font Awesome icons */
+.fa-external-link-alt{
+  font-size: 16px;
+}
+
+.fa-play-circle,
+.fa-stop-circle,
+.trackBody .fa-star,
+.albumBody .fa-star,
+.artistBody .fa-star,
+.videoBody .fa-star{
+  font-size: 58px;
+  color: #f9f02f;
+  cursor: pointer;
+  padding: 5%;
+  border-radius: 50%;
+  text-shadow: 2px 2px 0 #fff,
+    2px -2px 0 #fff,
+    -2px 2px 0 #fff,
+    2px -2px 0 #fff,
+    2px 0px 0 #fff,
+    0px 2px 0 #fff,
+    -2px 0px 0 #fff,
+    0px -2px 0 #fff;
+}
+
+.trackBody .fa-play-circle,
+.trackBody .fa-stop-circle{
+  color: #0b4683;
+}
+
+.trackBody .fa-play-circle:hover,
+.trackBody .fa-stop-circle:hover{
+  background: rgb(11, 70, 131, 0.3);
+}
+
+.videoBody .fa-play-circle,
+.videoBody .fa-stop-circle{
+  color: #7d0b83;
+}
+
+.videoBody .fa-play-circle:hover,
+.videoBody .fa-stop-circle:hover{
+  background: rgb(125, 11, 131, 0.3);
+}
+
+
+.trackBody .fa-star:hover,
+.albumBody .fa-star:hover,
+.artistBody .fa-star:hover,
+.videoBody .fa-star:hover{
+  background: rgb(241, 233, 53, 0.5);
+}
+
+
+
+.fa-star:active{
+
+}
+
+/* トップメニューのアイコン */
+nav.top-menu .fa-music,
+nav.top-menu .fa-compact-disc,
+nav.top-menu .fa-users,
+nav.top-menu .fa-film,
+nav.top-menu .fa-star {
+  font-size: 50px;
+  margin: 5px;
+}
+
+
+
+
+/* リザルトのフッター部 */
+li.resultFoot{
+  background: #333;
+  height: 60px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 3px 1px rgba(0,0,0,.1), 0 3px 3px 1px rgba(0,0,0,.2);
+  box-shadow: 0 0 3px 1px rgba(0,0,0,.1), 0 3px 3px 1px rgba(0,0,0,.2);
+  opacity: 0;
+  margin-top: 6px;
+}
+
+/* 検索結果のアニメーション用の設定 */
+li.headF,
+li.footF{
+  transform: translateY(100%);
+  transition: all 1s
+}
+
+li.headN,
+li.footN{
+  transform: translateX(70%);
+  transition: all 1s;
+}
+
+li.headP,
+li.footP{
+  transform: translateX(-70%);
+  transition: all 1s;
+}
+
+li.bodyF{
+  transform: translateY(100%);
+  transition: all 1.2s;
+}
+
+li.bodyN{
+  transform: translateX(70%);
+  transition: all 1.2s;
+}
+
+li.bodyP{
+  transform: translateX(-70%);
+  transition: all 1.2s;
+}
+
+
+
+/* 音楽プレイヤー */
+ul.player{
+  display: flex;
+  position: fixed;
+  z-index: 60;
+  bottom: -50px;
+  padding: 6px 0px;
+  width: 100%;
+  min-width: 300px;
+  margin: 0% 0%;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  background: rgb(11, 70, 131, 0.9);
+  border-top: solid 2px rgb(0, 0, 0, 0.8);
+  border-bottom: solid 2px rgb(0, 0, 0, 0.8);
+}
+
+ul.player li:nth-child(1){
+  margin-left: 4%;
+}
+
+ul.player li:nth-child(2){
+  font-size: 22px;
+  margin: 0% 1%;
+}
+
+ul.player li:nth-child(3){
+  font-size: 18px;
+  margin: 0% 1%;
+}
+
+ul.player li:nth-child(4){
+  margin-right: 4%;
+}
+
+ul.player li:nth-child(4) audio{
+  width: 350px;
+}
+
+
+
+/* MVプレイヤー */
+div.videoPlayer{
+  width: 58%;
+  min-width: 300px;
+  height: auto;
+  margin: 0% 21%;
+  position: fixed;
+  z-index: 350;
+}
+
+div.videoPlayer ul{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: #222;
+  padding: 3px 0px;
+  text-align: center;
+  border-bottom: solid 1px #fff;
+}
+
+div.videoPlayer ul li:nth-child(1){
+  font-size: 16px;
+  flex-basis: 50%;
+}
+
+div.videoPlayer ul li:nth-child(2){
+  font-size: 16px;
+  flex-basis: 50%;
+}
+
+div.videoPlayer video{
+  width: 100%;
+  height: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+/************************ 1200px以下の時 ***********************************/
+@media (max-width:1200px) {
+  nav.top-menu ul li{
+    font-size: 20px;
+    padding: 21px 28px;
+  }
+
+  /* 検索結果の文字サイズ */
+  li.trackBody,
+  li.albumBody,
+  li.artistBody,
+  li.videoBody{
+    font-size: 18px;
+  }
+
+  li.trackBody div:nth-child(2) a{
+    font-size: 26px;
+  }
+
+  li.albumBody div:nth-child(2) a{
+      font-size: 26px;
+  }
+
+  li.albumBody div:nth-child(4){
+    font-size: 12px;
+  }
+
+  li.artistBody div:nth-child(1) a{
+    font-size: 26px;
+  }
+
+  li.artistBody div:nth-child(2){
+    font-size: 14px;
+  }
+
+  li.artistBody div:nth-child(3){
+    font-size: 16px;
+  }
+
+  li.videoBody div:nth-child(2) a{
+    font-size: 26px;
+  }
+
+  .trackBody .genre,
+  .albumBody .genre,
+  .videoBody .genre{
+    font-size: 16px;
+  }
+
+  span.num{
+    font-size: 12px;
+  }
+
+  li.trackBody p.id,
+  li.albumBody p.id,
+  li.videoBody p.id{
+    font-size: 12px;
+  }
+
+  p.crAlbum{
+    font-size: 12px;
+  }
+
+  p.time,
+  p.price,
+  p.release{
+    font-size: 16px;
+  }
+
+  p.count{
+    font-size: 16px;
+  }
+
+  .fa-external-link-alt{
+    font-size: 14px;
+  }
+
+  .fa-play-circle,
+  .fa-stop-circle,
+  .trackBody .fa-star,
+  .albumBody .fa-star,
+  .artistBody .fa-star,
+  .videoBody .fa-star{
+    font-size: 56px;
+  }
+
+
+
+  ul.player li:nth-child(4) audio{
+    width: 300px;
+  }
+}
+
+
+/************************ 1050px以下の時 ***********************************/
+@media (max-width:1050px) {
+  nav.main-menu {
+    width: 50%;
+  }
+
+  header h1 img{
+    display: none;
+  }
+
+  div.mobile-logo img{
+    display: block;
+  }
+
+  /* レスポンシブ用トップメニュー */
+  nav.top-menu{
+    padding: 10px;
+    border-radius: 50%;
+    margin: 70px 0px 50px;
+  }
+
+  nav.top-menu ul{
+    display: grid;
+    align-items: stretch;
+    grid-template-columns: 200px 200px 200px;
+    grid-template-rows: 200px 200px 200px;
+  }
+
+  nav.top-menu ul li{
+    border-radius: 50%;
+    padding: 0px;
+  }
+
+  nav.top-menu ul li span:nth-child(1){
+    font-size: 14px;
+  }
+
+  nav.top-menu ul li#goTrack {
+      grid-row: 2 / 3;
+      grid-column: 1 / 2;
+      margin: 15px;
+  }
+
+  nav.top-menu ul li#goAlbum {
+      grid-row: 2 / 3;
+      grid-column: 3/4;
+      margin: 15px;
+  }
+
+  nav.top-menu ul li#goArtist {
+      grid-row: 3 / 4;
+      grid-column: 2/3;
+      margin: 15px;
+  }
+
+  nav.top-menu ul li#goMusicVideo {
+      grid-row: 1 / 2;
+      grid-column: 2 / 3;
+      margin: 15px;
+  }
+
+  nav.top-menu ul li#goBookmark {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    /* margin: 0px;
+    border-radius: 25%;
+    border: solid 2px #777;
+    -webkit-box-shadow: 0px 3px 6px 3px rgba(0,0,0,0.3);
+    box-shadow: 0px 3px 6px 3px rgba(0,0,0,0.3); */
+  }
+
+
+
+  section#topArea{
+    padding-top: 100px;
+  }
+
+  /* メインビジュアル */
+  #main-visual{
+    width: 96%;
+    margin: 0% 2%;
+    height: auto;
+    background: #282524;
+    border-radius: 40px;
+    border: solid 7px #c16200;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0px 6px 16px 6px rgba(0,0,0,0.3), inset 0px 0px 40px 3px rgba(0,0,0,0.5);
+    box-shadow: 0px 6px 16px 6px rgba(0,0,0,0.3), inset 0px 0px 40px 3px rgba(0,0,0,0.5);
+  }
+
+  div.subTitle{
+    margin-top: 40px;
+  }
+
+  div.subTitle h2{
+    font-size: 60px;
+    letter-spacing: 8px;
+    text-indent: 8px;
+  }
+
+  div.subTitle h3{
+    font-size: 40px;
+    letter-spacing: 2px;
+    text-indent: 2px;
+  }
+
+  #main-visual #mv-display{
+    width: 100%;
+    min-height: 10%;
+  }
+
+  #main-visual video{
+    width: 96%;
+    margin: 2% 2% 0% 2%;
+    border: solid 5px #000;
+    box-sizing: border-box;
+  }
+
+  div.videoPlayer{
+    width: 98%;
+    height: auto;
+    margin: 0% 1%;
+  }
+
+  #main-visual .altV{
+    width: 96%;
+    height: 300px;
+    margin: 2% 2% 0% 2%;
+    opacity: 1;
+    border: solid 5px #000;
+    box-sizing: border-box;
+    filter: brightness(80%);
+    border-radius: 40px;
+    background-image: url("../images/bg02.png");
+    background-repeat: repeat;
+  }
+
+
+
+  div#next,
+  div#next2,
+  div#prev,
+  div#prev2{
+    font-size: 30px;
+  }
+
+
+
+  /* 検索結果の文字サイズ */
+  li.trackBody,
+  li.albumBody,
+  li.artistBody,
+  li.videoBody{
+    font-size: 16px;
+  }
+
+  li.trackBody div:nth-child(2) a{
+    font-size: 22px;
+  }
+
+  li.albumBody div:nth-child(2) a{
+    font-size: 22px;
+  }
+
+  li.albumBody div:nth-child(4){
+    font-size: 12px;
+  }
+
+  li.artistBody div:nth-child(1) a{
+    font-size: 22px;
+  }
+
+  li.artistBody div:nth-child(2){
+    font-size: 12px;
+  }
+
+  li.artistBody div:nth-child(3){
+    font-size: 14px;
+  }
+
+  li.videoBody div:nth-child(2) a{
+    font-size: 22px;
+  }
+
+  .trackBody .genre,
+  .albumBody .genre,
+  .videoBody .genre{
+    font-size: 14px;
+  }
+
+  span.num{
+    font-size: 10px;
+  }
+
+  li.trackBody p.id,
+  li.albumBody p.id,
+  li.videoBody p.id{
+    font-size: 10px;
+  }
+
+  p.crAlbum{
+    font-size: 10px;
+  }
+
+  p.time,
+  p.price,
+  p.release{
+    font-size: 14px;
+  }
+
+  p.count{
+    font-size: 14px;
+  }
+
+  .fa-external-link-alt{
+    font-size: 12px;
+  }
+
+  .fa-play-circle,
+  .fa-stop-circle,
+  .trackBody .fa-star,
+  .albumBody .fa-star,
+  .artistBody .fa-star,
+  .videoBody .fa-star{
+    font-size: 50px;
+  }
+
+
+
+  ul.player li:nth-child(1){
+    margin-left: 2%;
+  }
+
+  ul.player li:nth-child(2){
+    font-size: 20px;
+  }
+
+  ul.player li:nth-child(3){
+    font-size: 16px;
+  }
+
+  ul.player li:nth-child(4){
+    margin-right: 2%;
+  }
+}
+
+/************************ 900px以下の時 ***********************************/
+@media (max-width: 900px) {
+  div.searchBox .searchText{
+    width: 400px;
+  }
+
+  div.subTitle h2{
+    font-size: 50px;
+    letter-spacing: 6px;
+    text-indent: 6px;
+    text-shadow:
+  5px 5px 5px #f58b1d,
+  5px -5px 5px #f58b1d,
+  -5px 5px 5px #f58b1d,
+  -5px -5px 5px #ffa74a;
+  }
+
+  div.subTitle h3{
+    font-size: 34px;
+    letter-spacing: 2px;
+    text-indent: 2px;
+    margin: 25px 0px 12px;
+  }
+
+
+  li.resultHead{
+    font-size: 18px;
+  }
+
+  li.resultHead span{
+    font-size: 30px;
+  }
+
+  div#next,
+  div#next2,
+  div#prev,
+  div#prev2{
+    font-size: 28px;
+  }
+
+
+
+  /* 検索結果の文字サイズ */
+  li.trackBody,
+  li.albumBody,
+  li.artistBody,
+  li.videoBody{
+    font-size: 14px;
+  }
+
+  li.trackBody div:nth-child(2) a{
+    font-size: 18px;
+  }
+
+  li.albumBody div:nth-child(2) a{
+      font-size: 18px;
+  }
+
+  li.albumBody div:nth-child(4){
+    font-size: 10px;
+  }
+
+  li.artistBody div:nth-child(1) a{
+    font-size: 18px;
+  }
+
+  li.artistBody div:nth-child(2){
+    font-size: 10px;
+  }
+
+  li.artistBody div:nth-child(3){
+    font-size: 12px;
+  }
+
+  li.videoBody div:nth-child(2) a{
+    font-size: 18px;
+  }
+
+  .trackBody .genre,
+  .albumBody .genre,
+  .videoBody .genre{
+    font-size: 12px;
+  }
+
+  span.num{
+    font-size: 10px;
+  }
+
+  li.trackBody p.id,
+  li.albumBody p.id,
+  li.videoBody p.id{
+    font-size: 10px;
+  }
+
+  p.crAlbum{
+    font-size: 10px;
+  }
+
+  p.time,
+  p.price,
+  p.release{
+    font-size: 12px;
+  }
+
+  p.count{
+    font-size: 12px;
+  }
+
+  .fa-external-link-alt{
+    font-size: 10px;
+  }
+
+  .fa-play-circle,
+  .fa-stop-circle,
+  .trackBody .fa-star,
+  .albumBody .fa-star,
+  .artistBody .fa-star,
+  .videoBody .fa-star{
+    font-size: 40px;
+  }
+
+
+  ul.player li:nth-child(2){
+    font-size: 18px;
+  }
+
+  ul.player li:nth-child(3){
+    font-size: 14px;
+  }
+  ul.player li:nth-child(4) audio{
+    width: 250px;
+  }
+}
+
+/************************ 750px以下の時 ***********************************/
+@media (max-width: 750px) {
+  div.searchBox .searchText{
+    width: 320px;
+  }
+
+  div.subTitle h2{
+    font-size: 38px;
+    font-weight: bold;
+    letter-spacing: 6px;
+    text-indent: 6px;
+  }
+
+  div.subTitle h3{
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-indent: 2px;
+    margin: 25px 0px 12px;
+  }
+
+  nav.top-menu ul{
+    grid-template-columns: 160px 160px 160px;
+    grid-template-rows: 160px 160px 160px;
+  }
+
+  nav.top-menu ul li span:nth-child(1){
+    font-size: 10px;
+  }
+
+  nav.top-menu ul li span:nth-child(3){
+    font-size: 16px;
+  }
+
+  ul.bookmarkhead{
+    font-size: 18px;
+  }
+
+
+  li.resultHead{
+    font-size: 16px;
+  }
+
+  li.resultHead span{
+    font-size: 26px;
+  }
+
+  div#next,
+  div#next2,
+  div#prev,
+  div#prev2{
+    font-size: 26px;
+  }
+
+
+
+  /* 検索結果の文字サイズ */
+  li.trackBody,
+  li.albumBody,
+  li.artistBody,
+  li.videoBody{
+    font-size: 12px;
+  }
+
+  li.trackBody div:nth-child(2) a{
+    font-size: 16px;
+  }
+
+  li.albumBody div:nth-child(2) a{
+      font-size: 16px;
+  }
+
+  li.albumBody div:nth-child(4){
+    font-size: 8px;
+  }
+
+  li.artistBody div:nth-child(1) a{
+    font-size: 16px;
+  }
+
+  li.artistBody div:nth-child(2){
+    font-size: 8px;
+  }
+
+  li.artistBody div:nth-child(3){
+    font-size: 10px;
+  }
+
+  li.videoBody div:nth-child(2) a{
+    font-size: 16px;
+  }
+
+  .trackBody .genre,
+  .albumBody .genre,
+  .videoBody .genre{
+    font-size: 10px;
+  }
+
+  span.num{
+    font-size: 8px;
+  }
+
+  li.trackBody p.id,
+  li.albumBody p.id,
+  li.videoBody p.id{
+    font-size: 8px;
+  }
+
+  p.crAlbum{
+    font-size: 8px;
+  }
+
+  p.time,
+  p.price,
+  p.release{
+    font-size: 10px;
+  }
+
+  p.count{
+    font-size: 10px;
+  }
+
+  .fa-external-link-alt{
+    font-size: 8px;
+  }
+
+  .fa-play-circle,
+  .fa-stop-circle,
+  .trackBody .fa-star,
+  .albumBody .fa-star,
+  .artistBody .fa-star,
+  .videoBody .fa-star{
+    font-size: 34px;
+  }
+
+
+
+  ul.player li:nth-child(4) audio{
+    width: 200px;
+  }
+
+  #clear{
+    font-size: 20px;
+  }
+}
+
+/************************ 599px以下の時 ***********************************/
+@media (max-width: 599px) {
+  div.searchBox .searchText{
+    width: 210px;
+  }
+
+  nav.main-menu {
+    width: 75%;
+  }
+
+  #main-visual video{
+    margin: 5% 2% 0% 2%;
+    border: solid 4px #000;
+  }
+
+  nav.top-menu ul{
+    grid-template-columns: 120px 120px 120px;
+    grid-template-rows: 120px 120px 120px;
+  }
+
+  nav.top-menu ul li span:nth-child(1),
+  nav.top-menu ul li span:nth-child(3){
+    display: none;
+  }
+
+
+
+  nav.top-menu .fa-music,
+  nav.top-menu .fa-compact-disc,
+  nav.top-menu .fa-users,
+  nav.top-menu .fa-film,
+  nav.top-menu .fa-star {
+    font-size: 52px;
+    margin: 0px;
+  }
+
+  footer .copyright{
+    font-size: 12px;
+    padding: 4px 10px;
+    margin: 4px 0px;
+  }
+
+  div.subTitle h2{
+    font-size: 26px;
+  }
+
+  div.subTitle h3{
+    font-size: 20px;
+  }
+
+  ul.bookmarkhead{
+    font-size: 14px;
+  }
+
+  ul.bookmarkhead li{
+    padding: 20px 0px 15px;
+    /* flex-basis: 24%; */
+  }
+
+  div.clearAlert{
+    font-size: 14px;
+    width: 80%;
+    margin: 25px 10% 0px;
+  }
+
+  #allDelete,
+  #cancel{
+    font-size: 16px;
+  }
+
+  #clear:hover{
+    letter-spacing: 0px;
+  }
+
+
+
+  li.resultHead{
+    font-size: 14px;
+  }
+
+  li.resultHead span{
+    font-size: 20px;
+  }
+
+  div#next,
+  div#next2,
+  div#prev,
+  div#prev2{
+    font-size: 26px;
+  }
+
+
+
+
+
+  li.trackBody,
+  li.albumBody,
+  li.artistBody,
+  li.videoBody{
+    font-size: 16px;
+  }
+
+  li.trackBody div:nth-child(1){
+    flex-basis: 40%;
+  }
+
+  li.trackBody div:nth-child(2){
+    flex-basis: 60%;
+  }
+
+  li.trackBody div:nth-child(2) a{
+    font-size: 22px;
+  }
+
+  li.trackBody div:nth-child(3){
+    flex-basis: 50%;
+  }
+
+  li.trackBody div:nth-child(4){
+    flex-basis: 50%;
+  }
+
+  li.trackBody div:nth-child(5){
+    flex-basis: 30%;
+  }
+
+  li.trackBody div:nth-child(6){
+    flex-basis: 20%;
+  }
+
+  li.trackBody div:nth-child(7){
+    flex-basis: 50%;
+  }
+
+  li.trackBody div:nth-child(8){
+    flex-basis: 50%;
+  }
+
+  li.trackBody div:nth-child(9){
+    flex-basis: 50%;
+  }
+
+
+
+  li.albumBody div:nth-child(1){
+    flex-basis: 40%;
+    order: 0;
+  }
+
+  li.albumBody div:nth-child(2){
+    flex-basis: 60%;
+    order: 1;
+  }
+
+  li.albumBody div:nth-child(2) a{
+      font-size: 22px;
+  }
+
+  li.albumBody div:nth-child(3){
+    flex-basis: 50%;
+    order: 3;
+  }
+
+  li.albumBody div:nth-child(4){
+    flex-basis: 50%;
+    font-size: 12px;
+    order: 2;
+  }
+
+  li.albumBody div:nth-child(5){
+    flex-basis: 30%;
+    order: 4;
+  }
+
+  li.albumBody div:nth-child(6){
+    flex-basis: 20%;
+    order: 5;
+  }
+
+  li.albumBody div:nth-child(7){
+    flex-basis: 50%;
+    order: 6;
+  }
+
+  li.albumBody div:nth-child(8){
+    flex-basis: 100%;
+    order: 7;
+  }
+
+
+  li.artistBody div:nth-child(1){
+    flex-basis: 50%;
+  }
+
+  li.artistBody div:nth-child(1) a{
+    font-size: 22px;
+  }
+
+  li.artistBody div:nth-child(2){
+    flex-basis: 50%;
+    font-size: 12px;
+  }
+
+  li.artistBody div:nth-child(3){
+    flex-basis: 50%;
+    font-size: 14px;
+  }
+
+  li.artistBody div:nth-child(4){
+    flex-basis: 50%;
+  }
+
+
+
+  li.videoBody div:nth-child(1){
+    flex-basis: 40%;
+    order: 0;
+  }
+
+  li.videoBody div:nth-child(2){
+    flex-basis: 60%;
+    order: 1;
+  }
+
+  li.videoBody div:nth-child(2) a{
+    font-size: 22px;
+  }
+
+  li.videoBody div:nth-child(3){
+    flex-basis: 50%;
+    order: 4;
+  }
+
+  li.videoBody div:nth-child(4){
+    flex-basis: 30%;
+    order: 2;
+  }
+
+  li.videoBody div:nth-child(5){
+    flex-basis: 20%;
+    order: 3;
+  }
+
+  li.videoBody div:nth-child(6){
+    flex-basis: 100%;
+    order: 5;
+  }
+
+  li.videoBody div:nth-child(7){
+    flex-basis: 50%;
+    order: 6;
+  }
+
+  li.videoBody div:nth-child(8){
+    flex-basis: 50%;
+    order: 7;
+  }
+
+
+
+  /* ジャンル名 */
+  .trackBody .genre,
+  .albumBody .genre,
+  .videoBody .genre{
+    margin-top: 5px;
+    font-size: 14px;
+    padding: 4px 0px;
+  }
+
+  .artistBody .genre{
+    padding: 4px 7px;
+    border-radius: 5px;
+  }
+
+  /* トラックNo. */
+  span.num{
+    font-size: 10px;
+  }
+
+
+  /* id名 */
+  li.trackBody p.id,
+  li.albumBody p.id,
+  li.videoBody p.id{
+    margin-top: 5px;
+    font-size: 10px;
+  }
+
+
+  p.crAlbum{
+    font-size: 10px;
+  }
+
+  p.time,
+  p.price,
+  p.release{
+    font-size: 14px;
+  }
+
+  p.count{
+    font-size: 14px;
+  }
+
+
+  .fa-external-link-alt{
+    font-size: 12px;
+  }
+
+  .fa-play-circle,
+  .fa-stop-circle,
+  .trackBody .fa-star,
+  .albumBody .fa-star,
+  .artistBody .fa-star,
+  .videoBody .fa-star{
+    font-size: 40px;
+    /* padding: 5%; */
+  }
+
+
+
+  p.error{
+    padding: 5px 0px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-indent: 2px;
+  }
+
+  .trackicon h3,
+  .albumicon h3,
+  .artisticon h3,
+  .videoicon h3{
+    margin-top: 12px;
+    font-size: 24px;
+    letter-spacing: .1em;
+    text-indent: .1em;
+
+  }
+
+
+
+  ul.player li:nth-child(1){
+    margin-left:1%;
+  }
+
+  ul.player li:nth-child(2){
+    font-size: 12px;
+  }
+
+  ul.player li:nth-child(3){
+    font-size: 9px;
+    display: none;
+  }
+
+  ul.player li:nth-child(4){
+    margin-right: 1%;
+  }
+
+  ul.player li:nth-child(4) audio{
+    width: 150px;
+  }
+
+  div.videoPlayer{
+    width: 98%;
+    height: auto;
+    margin: 0% 1%;
+  }
+
+  div.videoPlayer ul li:nth-child(1){
+    font-size: 12px;
+  }
+
+  div.videoPlayer ul li:nth-child(2){
+    font-size: 12px;
+  }
+}
+
+/************************ 450px以下の時 ***********************************/
+@media (max-width: 450px) {
+  div.searchBox .searchText{
+    width: 160px;
+    font-size: 14px;
+  }
+
+  div.searchBox #search{
+    font-size: 14px;
+    border: solid 2px #fff;
+    padding: 4px 6px;
+  }
+
+  div.subTitle h2{
+    font-size: 20px;
+    letter-spacing: 3px;
+    text-indent: 3px;
+    text-shadow:
+  3px 3px 3px #f58b1d,
+  3px -3px 3px #f58b1d,
+  -3px 3px 3px #f58b1d,
+  -3px -3px 3px #ffa74a;
+  }
+
+  div.subTitle h3{
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-indent: 1px;
+  }
+
+  nav.top-menu ul{
+    grid-template-columns: 90px 90px 90px;
+    grid-template-rows: 90px 90px 90px;
+  }
+
+  nav.top-menu .fa-music,
+  nav.top-menu .fa-compact-disc,
+  nav.top-menu .fa-users,
+  nav.top-menu .fa-film,
+  nav.top-menu .fa-star {
+    font-size: 36px;
+  }
+
+
+
+  ul.bookmarkhead{
+    font-size: 12px;
+  }
+
+  #clear{
+    font-size: 18px;
+  }
+
+
+
+  div#next,
+  div#next2,
+  div#prev,
+  div#prev2{
+    font-size: 22px;
+  }
+
+
+
+  /* 検索結果の文字サイズ */
+  li.trackBody,
+  li.albumBody,
+  li.artistBody,
+  li.videoBody{
+    font-size: 12px;
+  }
+
+  li.trackBody div:nth-child(2) a{
+    font-size: 16px;
+  }
+
+  li.albumBody div:nth-child(2) a{
+      font-size: 16px;
+  }
+
+  li.albumBody div:nth-child(4){
+    font-size: 8px;
+  }
+
+  li.artistBody div:nth-child(1) a{
+    font-size: 16px;
+  }
+
+  li.artistBody div:nth-child(2){
+    font-size: 8px;
+  }
+
+  li.artistBody div:nth-child(3){
+    font-size: 10px;
+  }
+
+  li.videoBody div:nth-child(2) a{
+    font-size: 16px;
+  }
+
+  .trackBody .genre,
+  .albumBody .genre,
+  .videoBody .genre{
+    font-size: 10px;
+  }
+
+  span.num{
+    font-size: 8px;
+  }
+
+  li.trackBody p.id,
+  li.albumBody p.id,
+  li.videoBody p.id{
+    font-size: 8px;
+  }
+
+  p.crAlbum{
+    font-size: 8px;
+  }
+
+  p.time,
+  p.price,
+  p.release{
+    font-size: 10px;
+  }
+
+  p.count{
+    font-size: 10px;
+  }
+
+  .fa-external-link-alt{
+    font-size: 8px;
+  }
+
+  .fa-play-circle,
+  .fa-stop-circle,
+  .trackBody .fa-star,
+  .albumBody .fa-star,
+  .artistBody .fa-star,
+  .videoBody .fa-star{
+    font-size: 34px;
+  }
+
+
+
+  ul.player li:nth-child(2){
+    font-size: 10px;
+  }
+
+  ul.player li:nth-child(4) audio{
+    width: 120px;
+  }
+
+  div.videoPlayer ul li:nth-child(1){
+    font-size: 10px;
+  }
+
+  div.videoPlayer ul li:nth-child(2){
+    font-size: 10px;
+  }
+}
+/************************ 350px以下の時 ***********************************/
+@media (max-width: 350px) {
+  div.searchBox .searchText{
+    width: 120px;
+    font-size: 12px;
+  }
+
+  div.searchBox #search{
+    font-size: 12px;
+  }
+
+  ul.bookmarkhead{
+    font-size: 10px;
+  }
+
+  li.resultHead{
+    font-size: 12px;
+  }
+
+  li.resultHead span{
+    font-size: 18px;
+  }
+
+  div#next,
+  div#next2,
+  div#prev,
+  div#prev2{
+    font-size: 18px;
+  }
+
+  ul.player li:nth-child(4) audio{
+    width: 100px;
+  }
+}
